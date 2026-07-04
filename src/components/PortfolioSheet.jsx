@@ -59,9 +59,26 @@ export default function PortfolioSheet({ sheetOpen, setSheetOpen, sheetData }) {
 							🔗 External Links{" "}
 						</h1>
 					)}
-					{sheetData?.links?.map((item) => (
-						<FetchLinkData alt="Netflix" sheetOpen={sheetOpen} url={item} />
-					))}
+					{sheetData?.links?.map((item, idx) => {
+						const getLinkAlt = (url) => {
+							try {
+								const host = new URL(url).hostname;
+								if (host.includes("github.com")) return "GitHub Repository";
+								if (host.includes("linkedin.com")) return "LinkedIn Post";
+								return host.replace("www.", "");
+							} catch (e) {
+								return "Project Link";
+							}
+						};
+						return (
+							<FetchLinkData 
+								key={idx} 
+								alt={getLinkAlt(item)} 
+								sheetOpen={sheetOpen} 
+								url={item} 
+							/>
+						);
+					})}
 				</div>
 			</div>
 		</div>

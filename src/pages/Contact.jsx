@@ -180,9 +180,29 @@ export default function Contact() {
 			) : (
 				/* Standard Form Mode */
 				<>
+					{/* Quick contact alternatives */}
+					<div className="contact-quick-bar">
+						<a href="mailto:dachepallyrohith@gmail.com" className="contact-quick-item">
+							<ion-icon name="mail-outline"></ion-icon>
+							<span>dachepallyrohith@gmail.com</span>
+						</a>
+						<a href="https://www.linkedin.com/in/rohith-dachepally" target="_blank" rel="noopener noreferrer" className="contact-quick-item">
+							<ion-icon name="logo-linkedin"></ion-icon>
+							<span>LinkedIn</span>
+						</a>
+						<a href="https://github.com/bachi-2006" target="_blank" rel="noopener noreferrer" className="contact-quick-item">
+							<ion-icon name="logo-github"></ion-icon>
+							<span>GitHub</span>
+						</a>
+						<a href="https://linktr.ee/rohith_dachepally" target="_blank" rel="noopener noreferrer" className="contact-quick-item">
+							<ion-icon name="link-outline"></ion-icon>
+							<span>Linktree</span>
+						</a>
+					</div>
+
 					{/* Map */}
-					<section className="mapbox" data-mapbox>
-						<figure>
+					<section className="mapbox relative group" data-mapbox>
+						<figure className="h-full w-full">
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3170294889!2d78.24323212262038!3d17.41229792508498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1721065588811!5m2!1sen!2sin"
 								width="600"
@@ -193,6 +213,15 @@ export default function Contact() {
 								referrerPolicy="no-referrer-when-downgrade"
 							></iframe>
 						</figure>
+						<a 
+							href="https://maps.google.com/maps?q=Hyderabad,%20Telangana" 
+							target="_blank" 
+							rel="noopener noreferrer"
+							className="absolute top-4 right-4 bg-[#1b1b1cde] hover:bg-yellow-400 hover:text-black border border-gray-800 hover:border-yellow-500 text-yellow-400 font-mono text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-xl shadow-lg flex items-center gap-1.5 transition-all duration-200"
+						>
+							<span>Open in Maps</span>
+							<ion-icon name="open-outline" style={{ fontSize: "12px" }}></ion-icon>
+						</a>
 					</section>
 
 					{/* Contact Form */}

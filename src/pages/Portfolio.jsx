@@ -54,51 +54,55 @@ export default function Portfolio({ sheetHandler }) {
 				</div>
 
 				{/* Project Grid */}
-				<div className="grid md:grid-cols-2 grid-cols-1 gap-4 cursor-pointer">
+				<div className="grid md:grid-cols-2 grid-cols-1 gap-6 cursor-pointer">
 					{filterProjects.map((project, index) => (
 						<div
 							key={index}
 							onClick={() => sheetHandler(project)}
-							className="bg-[#2b2b2c6a] hover:bg-[linear-gradient(0deg,_rgba(254,202,102,0.15)_0%,_transparent_100%)] bg-[linear-gradient(0deg,_rgba(254,202,102,0.05)_0%,_transparent_100%)] p-8 rounded-2xl text-white h-[360px] relative overflow-hidden border-[#363636] border group transition-all duration-300 hover:border-[#585858]"
+							className="bg-[#2b2b2c6a] hover:bg-[linear-gradient(0deg,_rgba(254,202,102,0.12)_0%,_transparent_100%)] bg-[linear-gradient(0deg,_rgba(254,202,102,0.03)_0%,_transparent_100%)] p-6 rounded-2xl text-white h-[380px] flex flex-col justify-between border-[#363636] border group transition-all duration-300 hover:border-[#585858] hover:shadow-lg hover:shadow-yellow-500/[0.02]"
 						>
-							<span className="spacegrotesk text-xl font-bold block">
-								{project.title}
-							</span>
-							<span className="text-[#ffffffd8] font-thin mt-2 line-clamp-2 block">
-								{project.description}
-							</span>
+							<div className="space-y-2">
+								<span className="spacegrotesk text-lg font-bold block group-hover:text-yellow-400 transition-colors duration-200">
+									{project.title}
+								</span>
+								<span className="text-[#ffffffb3] font-thin line-clamp-2 text-sm block">
+									{project.description}
+								</span>
+							</div>
 
-							{project.img && project.img.length >= 2 ? (
-								<>
+							<div className="relative w-full h-[210px] mt-4 overflow-hidden rounded-xl bg-[#1b1b1c3a] border border-gray-800/40 flex items-end justify-center">
+								{project.img && project.img.length >= 2 ? (
+									<>
+										<img
+											src={project.img[0]}
+											alt={project.title}
+											className="absolute bottom-[-20px] h-[170px] rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.6)] left-6 group-hover:rotate-[-3deg] transition-transform group-hover:scale-[1.05] group-hover:translate-x-[-5px] w-[58%] object-cover bg-top"
+										/>
+										<img
+											src={project.img[1]}
+											alt={project.title}
+											className="absolute bottom-[-20px] h-[130px] rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.6)] right-6 group-hover:rotate-[3deg] transition-transform group-hover:scale-[1.05] group-hover:translate-x-[5px] w-[42%] object-cover bg-top"
+										/>
+									</>
+								) : project.img && project.img.length === 1 ? (
 									<img
 										src={project.img[0]}
 										alt={project.title}
-										className="absolute bottom-[-30px] h-[170px] rounded-lg shadow-[0_10px_50px_-12px_rgba(0,0,0,0.85)] left-8 group-hover:rotate-[-3deg] transition-transform group-hover:scale-[1.05] group-hover:translate-x-[-10px] w-[60%] object-cover bg-top"
+										className="absolute bottom-[-20px] h-[160px] rounded-lg shadow-[0_8px_30px_rgba(0,0,0,0.6)] left-1/2 -translate-x-1/2 w-[85%] object-cover bg-top transition-all duration-300 group-hover:scale-[1.03] group-hover:bottom-[-10px]"
 									/>
-									<img
-										src={project.img[1]}
-										alt={project.title}
-										className="absolute bottom-[-30px] h-[130px] rounded-lg shadow-[0_10px_50px_-12px_rgba(0,0,0,0.85)] right-8 group-hover:rotate-[3deg] transition-transform group-hover:scale-[1.05] group-hover:translate-x-[10px]"
-									/>
-								</>
-							) : project.img && project.img.length === 1 ? (
-								<img
-									src={project.img[0]}
-									alt={project.title}
-									className="absolute bottom-[-30px] h-[150px] rounded-lg shadow-[0_10px_50px_-12px_rgba(0,0,0,0.85)] left-1/2 -translate-x-1/2 w-[85%] object-cover bg-top transition-all duration-300 group-hover:scale-[1.03] group-hover:bottom-[-20px]"
-								/>
-							) : (
-								<div className="absolute bottom-5 left-8 right-8 flex flex-wrap gap-2">
-									{project.tools?.slice(0, 5).map((tool, i) => (
-										<span
-											key={i}
-											className="text-xs px-2.5 py-1 bg-[#ffffff08] rounded-full text-yellow-200/70 border border-yellow-400/20"
-										>
-											{tool}
-										</span>
-									))}
-								</div>
-							)}
+								) : (
+									<div className="w-full h-full flex items-center justify-center p-6 flex-wrap gap-2">
+										{project.tools?.slice(0, 8).map((tool, i) => (
+											<span
+												key={i}
+												className="text-xs px-2.5 py-1 bg-[#ffffff05] rounded-full text-yellow-200/70 border border-yellow-400/10"
+											>
+												{tool}
+											</span>
+										))}
+									</div>
+								)}
+							</div>
 						</div>
 					))}
 				</div>

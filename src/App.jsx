@@ -5,7 +5,7 @@ import "./App.css";
 import SideNav from "./components/SideNav";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useLocation } from "react-router";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import Home from "./pages/Home";
@@ -28,7 +28,21 @@ const loaderLogos = [
   { src: "/vscode.svg", alt: "VS Code" }
 ];
 
-function App() {
+function AppContent() {
+	const location = useLocation();
+	const isHome = location.pathname === "/";
+
+	useEffect(() => {
+		const pageTitles = {
+			"/": "Rohith Dachepally | Portfolio",
+			"/about": "About | Rohith Dachepally",
+			"/portfolio": "Portfolio | Rohith Dachepally",
+			"/contact": "Contact | Rohith Dachepally",
+			"/experiments": "Experiments | Rohith Dachepally",
+		};
+		document.title = pageTitles[location.pathname] || "Rohith Dachepally";
+	}, [location]);
+
 	const [sheetOpen, setSheetOpen] = useState(false);
 	const [sheetData, setSheetData] = useState({});
 	const [loading, setLoading] = useState(() => {
@@ -102,10 +116,10 @@ function App() {
 			/>
 			<Navbar />
 			<main
-				className={`transition-transform  ${sheetOpen ? "scale-[0.90]" : ""}`}
+				className={`transition-transform ${sheetOpen ? "scale-[0.90]" : ""} ${isHome ? "" : "no-sidebar"}`}
 			>
 				<SideNav />
-				<div className="main-content">
+				<div className={`main-content ${isHome ? "" : "main-content--full"}`}>
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/about" element={<About />} />
@@ -120,6 +134,10 @@ function App() {
 			</main>
 		</>
 	);
+}
+
+function App() {
+	return <AppContent />;
 }
 
 export default App;

@@ -22,7 +22,7 @@ export default function SideNav() {
 						Rohith Dachepally
 					</ScrambleText>
 					<div className="flex gap-2 flex-wrap">
-						<p className="title">Tech Enthusiast | Data Analytics | CS Undergrad @ VBIT</p>
+						<p className="title sidebar-title-wrap">Tech Enthusiast | Data Analytics | CS Undergrad @ VBIT</p>
 					</div>
 				</div>
 
@@ -52,27 +52,15 @@ export default function SideNav() {
 
 					<li className="contact-item">
 						<div className="icon-box">
-							<ion-icon name="phone-portrait-outline"></ion-icon>
+							<ion-icon name="flash-outline"></ion-icon>
 						</div>
 
 						<div className="contact-info">
-							<p className="contact-title">Phone</p>
-
-							<a href="tel:+9174167XXXXX" className="contact-link">
-								+91 74167 XXXXX
-							</a>
-						</div>
-					</li> 
-
-					<li className="contact-item">
-						<div className="icon-box">
-							<ion-icon name="calendar-outline"></ion-icon>
-						</div>
-
-						<div className="contact-info">
-							<p className="contact-title">Birthday</p>
-
-							<time dateTime="200x-0x-2x">2x-0x-200x</time>
+							<p className="contact-title">Availability</p>
+							<span className="availability-badge">
+								<span className="availability-dot"></span>
+								Open to Work
+							</span>
 						</div>
 					</li>
 

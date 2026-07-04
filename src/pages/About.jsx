@@ -194,7 +194,7 @@ contributing to impactful projects.
 
 {/* Services */}
 <section className="service">
-<h3 className="h3 service-title">What I Do</h3>
+<h3 className="h3 service-title spacegrotesk">What I Do</h3>
 <ul className="service-list">
 <li className="service-item">
 <div className="service-icon-box">

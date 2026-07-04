@@ -3,9 +3,17 @@ import React, { useState } from "react";
 export default function GitHubStats() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
+	const [streakIsZero, setStreakIsZero] = useState(false);
+
+	const handleLoad = (e) => {
+		setLoading(false);
+		// Try to detect if the streak circle shows "0"
+		// We check the image alt/src but can't read SVG content cross-origin.
+		// Instead we just show a subtle note when the image loads fine.
+	};
 
 	return (
-		<div className="relative w-full h-full flex items-center justify-center min-h-[140px] md:min-h-[195px] select-none p-4">
+		<div className="relative w-full h-full flex flex-col items-center justify-center min-h-[140px] md:min-h-[195px] select-none p-4">
 			{/* Skeleton Loader Shimmer */}
 			{loading && !error && (
 				<div className="absolute inset-0 flex flex-col items-center justify-center bg-[#1e1e1f] rounded-2xl p-6">
@@ -31,15 +39,23 @@ export default function GitHubStats() {
 					</div>
 				</div>
 			) : (
-				<img
-					className={`cursor-pointer max-w-full object-contain transition-all duration-500 ${
-						loading ? "opacity-0 scale-95" : "opacity-100 scale-100"
-					}`}
-					src="https://streak-stats.demolab.com/?user=bachi-2006&theme=rising-sun&hide_border=true&background=00000000"
-					alt="GitHub Streak Stats"
-					onLoad={() => setLoading(false)}
-					onError={() => setError(true)}
-				/>
+				<div className="flex flex-col items-center w-full">
+					<img
+						className={`cursor-pointer max-w-full object-contain transition-all duration-500 ${
+							loading ? "opacity-0 scale-95" : "opacity-100 scale-100"
+						}`}
+						src="https://streak-stats.demolab.com/?user=bachi-2006&theme=rising-sun&hide_border=true&background=00000000"
+						alt="GitHub Streak Stats"
+						onLoad={handleLoad}
+						onError={() => setError(true)}
+					/>
+					{/* Subtle note shown always under the streak — helpful when streak = 0 */}
+					{!loading && (
+						<p className="text-[10px] text-gray-600 mt-1 font-mono">
+							streak resets daily at midnight UTC
+						</p>
+					)}
+				</div>
 			)}
 		</div>
 	);
