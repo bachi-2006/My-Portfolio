@@ -355,7 +355,7 @@ article.active {
 
 main {
 	margin: 15px 12px;
-	margin-bottom: 75px;
+	margin-bottom: 130px;
 	min-width: 259px;
 }
 
@@ -1464,6 +1464,50 @@ main {
 	height: 100%;
 	border: none;
 	filter: grayscale(1) invert(1);
+	position: relative;
+	z-index: 1;
+	transition: opacity 0.25s ease;
+}
+
+.mapbox-fallback {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 22px;
+	background:
+		radial-gradient(circle at top right, rgba(254, 202, 102, 0.08), transparent 32%),
+		linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0));
+	color: var(--light-gray);
+}
+
+.mapbox-fallback__badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	width: fit-content;
+	padding: 8px 12px;
+	border: 1px solid rgba(254, 202, 102, 0.16);
+	border-radius: 999px;
+	background: rgba(17, 17, 19, 0.72);
+	font-size: 11px;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--orange-yellow-crayola);
+}
+
+.mapbox-fallback__content h4 {
+	color: var(--white-2);
+	font-size: 20px;
+	margin-bottom: 8px;
+}
+
+.mapbox-fallback__content p {
+	max-width: 360px;
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--light-gray-70);
 }
 
 .contact-form {
@@ -2720,6 +2764,7 @@ main.no-sidebar {
 	width: 100%;
 	max-width: 960px;
 	margin-inline: auto;
+	margin-top: 0;
 }
 
 @media (min-width: 1250px) {
@@ -2892,30 +2937,10 @@ main.no-sidebar {
 
 /* --- Smooth sidebar transition --- */
 .sidebar {
-	transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), 
-	            opacity 0.35s ease, 
-	            transform 0.35s ease,
-	            margin 0.35s ease, 
-	            padding 0.35s ease, 
-	            max-height 0.35s ease;
-}
-
-main.no-sidebar .sidebar {
-	width: 0 !important;
-	min-width: 0 !important;
-	max-width: 0 !important;
-	opacity: 0 !important;
-	transform: translateX(-30px);
-	padding: 0 !important;
-	margin: 0 !important;
-	border: none !important;
-	pointer-events: none;
-	overflow: hidden;
-}
-
-@media (max-width: 1249px) {
-	main.no-sidebar .sidebar {
-		max-height: 0 !important;
-		transform: translateY(-20px);
-	}
+	transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+		opacity 0.35s ease,
+		transform 0.35s ease,
+		margin 0.35s ease,
+		padding 0.35s ease,
+		max-height 0.35s ease;
 }

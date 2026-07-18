@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect, useRef } from "react";
 import ScrambleText from "../components/ScrambleText";
 import { Projects as projectdata } from "../assets/Projects";
@@ -95,11 +96,11 @@ function FluidShaderCanvas() {
 		gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 		const positions = new Float32Array([
 			-1, -1,
-			 1, -1,
-			-1,  1,
-			-1,  1,
-			 1, -1,
-			 1,  1,
+			1, -1,
+			-1, 1,
+			-1, 1,
+			1, -1,
+			1, 1,
 		]);
 		gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
 
@@ -869,6 +870,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 			{ type: "system", text: "guest@rohith-workspace:~ $ cat status.txt" },
 			{ type: "italic", text: '"Prompt Forge online. Type \'help\' for commands, or \'forge\' to switch the sandbox into creative synthesis mode."' },
 		]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const scrollToBottom = () => {
@@ -981,11 +983,11 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 								<div className="text-white font-bold mb-1">System Commands:</div>
 								<div>  <span className="text-yellow-400 font-bold">about</span>       - Learn more about Rohith Dachepally</div>
 								<div>  <span className="text-yellow-400 font-bold">projects</span>    - List all visual portfolio projects</div>
-								<div>  <span className="text-yellow-400 font-bold">project [n]</span> - View details of project #n (e.g. 'project 2')</div>
+								<div>  <span className="text-yellow-400 font-bold">project [n]</span> - View details of project #n (e.g. &apos;project 2&apos;)</div>
 								<div>  <span className="text-yellow-400 font-bold">skills</span>      - Display technical skill levels</div>
 								<div>  <span className="text-yellow-400 font-bold">contact</span>     - Get contact links and social media handles</div>
 								<div>  <span className="text-yellow-400 font-bold">forge</span>       - Open the new Prompt Forge experiment</div>
-								<div>  <span className="text-yellow-400 font-bold">ssh [host]</span>  - Connect to a remote host (try: 'ssh ssh.moriliu.com')</div>
+								<div>  <span className="text-yellow-400 font-bold">ssh [host]</span>  - Connect to a remote host (try: &apos;ssh ssh.moriliu.com&apos;)</div>
 								<div>  <span className="text-yellow-400 font-bold">clear</span>       - Clear the terminal screen</div>
 								<div className="text-white font-bold mt-2 mb-1">Sandbox Commands:</div>
 								<div>  <span className="text-yellow-400 font-bold">ls</span>          - List simulated workspace scripts</div>
@@ -1000,7 +1002,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 			case "clear":
 				setHistory([]);
 				break;
-			case "ls":
+			case "ls": {
 				const isLong = arg.includes("-l");
 				const hasAll = arg.includes("-a") || isLong;
 				
@@ -1044,7 +1046,8 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 					}
 				]);
 				break;
-			case "cat":
+			}
+			case "cat": {
 				if (!arg) {
 					setHistory(prev => [...prev, { type: "error", text: "cat: missing file operand" }]);
 					break;
@@ -1067,6 +1070,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 					setHistory(prev => [...prev, { type: "error", text: `cat: ${filename}: No such file or directory` }]);
 				}
 				break;
+			}
 			case "about":
 				setHistory(prev => [
 					...prev,
@@ -1095,13 +1099,13 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 										<span className="text-green-400">[{idx + 1}]</span> {proj.title} - <span className="text-blue-400">{proj.categories.join(", ")}</span>
 									</div>
 								))}
-								<div className="text-[10px] text-gray-500 mt-2">Type 'project [number]' (e.g., 'project 2') or click a project above.</div>
+								<div className="text-[10px] text-gray-500 mt-2">Type &apos;project [number]&apos; (e.g., &apos;project 2&apos;) or click a project above.</div>
 							</div>
 						)
 					}
 				]);
 				break;
-			case "project":
+			case "project": {
 				const idx = parseInt(arg) - 1;
 				if (isNaN(idx) || idx < 0 || idx >= projectdata.length) {
 					setHistory(prev => [...prev, { type: "error", text: "Error: Invalid project index. Usage: 'project [1-14]'" }]);
@@ -1133,6 +1137,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 					]);
 				}
 				break;
+			}
 			case "skills":
 				setHistory(prev => [
 					...prev,
@@ -1223,7 +1228,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 					setHistory(prev => [...prev, { type: "error", text: "Error: Host name required. Try: 'ssh ssh.moriliu.com'" }]);
 				}
 				break;
-			case "init-experiments":
+			case "init-experiments": {
 				setHistory([]);
 				setActiveExperiment(null);
 				const bootSequence = [
@@ -1239,6 +1244,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 					}, index * 200);
 				});
 				break;
+			}
 			default:
 				setHistory(prev => [
 					...prev, 
@@ -1249,7 +1255,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 	};
 
 	return (
-		<article className="active" data-page="experiments">
+		<article className="active pb-24 md:pb-28" data-page="experiments">
 			<header>
 				<h2 className="h2 article-title spacegrotesk text-white">Experiments</h2>
 			</header>
@@ -1351,7 +1357,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 			</div>
 
 			{/* Floating Badge below terminal */}
-			<div className="w-full text-center mt-4">
+			<div className="w-full text-center mt-4 pb-6">
 				<div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1e1e1f] border border-[#363636] rounded-full text-xs text-yellow-300/80">
 					<span className="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
 					<span className="cristik"><ScrambleText>Interactive Terminal Sandbox Active</ScrambleText></span>

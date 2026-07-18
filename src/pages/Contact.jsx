@@ -7,6 +7,8 @@ export default function Contact() {
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
 	const [submitted, setSubmitted] = useState(false);
+	const [mapLoaded, setMapLoaded] = useState(false);
+	const [mapFailed, setMapFailed] = useState(false);
 	const terminalRef = useRef(null);
 
 	const charLimit = 500;
@@ -117,6 +119,16 @@ export default function Contact() {
 		}
 	}, [isCliMode]);
 
+	useEffect(() => {
+		if (mapLoaded) return undefined;
+
+		const fallbackTimer = setTimeout(() => {
+			setMapFailed(true);
+		}, 3500);
+
+		return () => clearTimeout(fallbackTimer);
+	}, [mapLoaded]);
+
 	return (
 		<article className="contact active" data-page="contact">
 			<header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
@@ -202,6 +214,22 @@ export default function Contact() {
 
 					{/* Map */}
 					<section className="mapbox relative group" data-mapbox>
+						{!mapLoaded && (
+							<div className="mapbox-fallback">
+								<div className="mapbox-fallback__badge">
+									<ion-icon name="location-outline"></ion-icon>
+									<span>{mapFailed ? "Map preview unavailable" : "Loading map preview"}</span>
+								</div>
+								<div className="mapbox-fallback__content">
+									<h4>Hyderabad, Telangana</h4>
+									<p>
+										{mapFailed
+											? "The embedded map is blocked in this browser, but the location link still works."
+											: "Preparing the embedded map view."}
+									</p>
+								</div>
+							</div>
+						)}
 						<figure className="h-full w-full">
 							<iframe
 								src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d243647.3170294889!2d78.24323212262038!3d17.41229792508498!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb99daeaebd2c7%3A0xae93b78392bafbc2!2sHyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1721065588811!5m2!1sen!2sin"
@@ -211,6 +239,16 @@ export default function Contact() {
 								allowFullScreen=""
 								loading="lazy"
 								referrerPolicy="no-referrer-when-downgrade"
+								title="Hyderabad, Telangana map"
+								onLoad={() => {
+									setMapLoaded(true);
+									setMapFailed(false);
+								}}
+								onError={() => {
+									setMapLoaded(false);
+									setMapFailed(true);
+								}}
+								className={mapLoaded ? "opacity-100" : "opacity-0"}
 							></iframe>
 						</figure>
 						<a 

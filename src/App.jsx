@@ -118,7 +118,7 @@ function AppContent() {
 			<main
 				className={`transition-transform ${sheetOpen ? "scale-[0.90]" : ""} ${isHome ? "" : "no-sidebar"}`}
 			>
-				<SideNav />
+				{isHome ? <SideNav /> : null}
 				<div className={`main-content ${isHome ? "" : "main-content--full"}`}>
 					<Routes>
 						<Route path="/" element={<Home />} />
