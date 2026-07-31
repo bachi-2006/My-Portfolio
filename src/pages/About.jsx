@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 
 const experience = [
 	{
@@ -159,6 +160,27 @@ const certifications = [
 	},
 ];
 
+const revealUp = {
+	initial: { opacity: 0, y: 26 },
+	whileInView: { opacity: 1, y: 0 },
+	viewport: { once: true, amount: 0.2 },
+	transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
+};
+
+const staggerContainer = {
+	initial: { opacity: 0, y: 18 },
+	whileInView: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			staggerChildren: 0.1,
+			delayChildren: 0.05,
+			duration: 0.45,
+		},
+	},
+	viewport: { once: true, amount: 0.15 },
+};
+
 export default function About() {
 	const [selectedCategory, setSelectedCategory] = React.useState("All");
 	const categories = ["All", "Cloud & OS", "Data & AI", "Development & Other"];
@@ -174,7 +196,8 @@ export default function About() {
 				<h2 className="h2 article-title cristik font-extralight">About Me</h2>
 			</header>
 
-			<section className="about-text max-w-[600px]">
+			<motion.section className="about-intro-shell" {...revealUp}>
+				<section className="about-text max-w-[600px]">
 				<p>
 					Hey, I&apos;m Rohith - a Tech Enthusiast and Computer Science undergrad at
 					Vignana Bharathi Institute of Technology (VBIT), Hyderabad. Passionate
@@ -186,12 +209,14 @@ export default function About() {
 					into meaningful insights. I love exploring new technologies and
 					contributing to impactful projects.
 				</p>
-			</section>
+				</section>
+				<div className="about-intro-pulse" aria-hidden="true"></div>
+			</motion.section>
 
-			<section className="service">
+			<motion.section className="service" {...revealUp}>
 				<h3 className="h3 service-title spacegrotesk">What I Do</h3>
-				<ul className="service-list">
-					<li className="service-item">
+				<motion.ul className="service-list" {...staggerContainer}>
+					<motion.li className="service-item" variants={revealUp}>
 						<div className="service-icon-box">
 							<ion-icon
 								name="analytics-outline"
@@ -206,8 +231,8 @@ export default function About() {
 								and data visualization.
 							</p>
 						</div>
-					</li>
-					<li className="service-item">
+					</motion.li>
+					<motion.li className="service-item" variants={revealUp}>
 						<div className="service-icon-box">
 							<ion-icon
 								name="hardware-chip-outline"
@@ -221,11 +246,11 @@ export default function About() {
 								sensors, and microcontrollers for real-world IoT applications.
 							</p>
 						</div>
-					</li>
-				</ul>
-			</section>
+					</motion.li>
+				</motion.ul>
+			</motion.section>
 
-			<section className="timeline">
+			<motion.section className="timeline" {...revealUp}>
 				<div className="title-wrapper">
 					<div className="icon-box">
 						<ion-icon name="briefcase-outline"></ion-icon>
@@ -233,9 +258,9 @@ export default function About() {
 					<h3 className="h3 font-semibold">Experience</h3>
 				</div>
 
-				<ol className="timeline-list">
+				<motion.ol className="timeline-list" {...staggerContainer}>
 					{experience.map((role) => (
-						<li className="timeline-item" key={`${role.company}-${role.role}`}>
+						<motion.li className="timeline-item" key={`${role.company}-${role.role}`} variants={revealUp}>
 							<div className="flex cursor-pointer gap-4 transition-transform duration-200 hover:translate-x-2">
 								<img
 									className="h-[50px] w-[50px] flex-shrink-0 rounded-lg border border-gray-600 object-cover"
@@ -252,14 +277,14 @@ export default function About() {
 									<p className="timeline-text">{role.description}</p>
 								</div>
 							</div>
-						</li>
+						</motion.li>
 					))}
-				</ol>
-			</section>
+				</motion.ol>
+			</motion.section>
 
 			<div className="separator"></div>
 
-			<section className="skill">
+			<motion.section className="skill" {...revealUp}>
 				<div className="title-wrapper">
 					<div className="icon-box mr-4">
 						<ion-icon name="hammer-outline"></ion-icon>
@@ -267,9 +292,9 @@ export default function About() {
 					<h3 className="h3 font-semibold">My Skills</h3>
 				</div>
 
-				<div className="timeline-list">
+				<motion.div className="timeline-list" {...staggerContainer}>
 					{skillGroups.map((skillGroup) => (
-						<div className="mr-8 mt-6" key={skillGroup.category}>
+						<motion.div className="mr-8 mt-6 skill-card-shell" key={skillGroup.category} variants={revealUp}>
 							<h4 className="skills-title cristik mb-0 overflow-hidden p-4 font-medium text-yellow-200">
 								<span className="flex items-center gap-2 text-2xl">
 									<ion-icon name={skillGroup.icon}></ion-icon>
@@ -291,14 +316,14 @@ export default function About() {
 									</div>
 								))}
 							</div>
-						</div>
+						</motion.div>
 					))}
-				</div>
-			</section>
+				</motion.div>
+			</motion.section>
 
 			<div className="separator"></div>
 
-			<section className="timeline">
+			<motion.section className="timeline" {...revealUp}>
 				<div className="title-wrapper">
 					<div className="icon-box">
 						<ion-icon name="ribbon-outline"></ion-icon>
@@ -306,11 +331,12 @@ export default function About() {
 					<h3 className="h3 font-semibold">Certifications</h3>
 				</div>
 
-				<div className="mb-6 flex flex-wrap gap-2">
+				<motion.div className="mb-6 flex flex-wrap gap-2" {...staggerContainer}>
 					{categories.map((category) => (
-						<button
+						<motion.button
 							key={category}
 							onClick={() => setSelectedCategory(category)}
+							variants={revealUp}
 							className={`rounded-xl px-4 py-2 text-sm font-semibold transition-all duration-300 ${
 								selectedCategory === category
 									? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-md shadow-yellow-500/25"
@@ -318,16 +344,17 @@ export default function About() {
 							}`}
 						>
 							{category}
-						</button>
+						</motion.button>
 					))}
-				</div>
+				</motion.div>
 
-				<ul className="grid grid-cols-1 gap-4 md:grid-cols-2">
+				<motion.ul className="grid grid-cols-1 gap-4 md:grid-cols-2" {...staggerContainer}>
 					{filteredCerts.map((cert) => (
-						<li
+						<motion.li
 							className="cursor-pointer rounded-2xl border border-gray-800 bg-[#212123] p-5 transition-all duration-300 hover:translate-y-[-4px] hover:border-yellow-500/50 hover:shadow-lg hover:shadow-yellow-500/5"
 							key={cert.title}
 							onClick={() => window.open(cert.link, "_blank")}
+							variants={revealUp}
 						>
 							<div className="flex items-start gap-4">
 								<div className="flex h-[50px] w-[50px] flex-shrink-0 items-center justify-center rounded-xl border border-gray-800 bg-[#2a2a2b] text-xl text-yellow-400">
@@ -343,14 +370,14 @@ export default function About() {
 									</span>
 								</div>
 							</div>
-						</li>
+						</motion.li>
 					))}
-				</ul>
-			</section>
+				</motion.ul>
+			</motion.section>
 
 			<div className="separator"></div>
 
-			<section className="timeline">
+			<motion.section className="timeline" {...revealUp}>
 				<div className="title-wrapper">
 					<div className="icon-box">
 						<ion-icon name="school-outline"></ion-icon>
@@ -358,8 +385,8 @@ export default function About() {
 					<h3 className="h3 font-semibold">Education</h3>
 				</div>
 
-				<ol className="timeline-list">
-					<li className="timeline-item">
+				<motion.ol className="timeline-list" {...staggerContainer}>
+					<motion.li className="timeline-item" variants={revealUp}>
 						<div className="flex cursor-pointer gap-4 transition-transform duration-200 hover:translate-x-2">
 							<img
 								className="h-[50px] w-[50px] flex-shrink-0 rounded-lg border border-gray-600 object-cover"
@@ -377,8 +404,8 @@ export default function About() {
 								</p>
 							</div>
 						</div>
-					</li>
-					<li className="timeline-item">
+					</motion.li>
+					<motion.li className="timeline-item" variants={revealUp}>
 						<div className="flex cursor-pointer gap-4 transition-transform duration-200 hover:translate-x-2">
 							<img
 								className="h-[50px] w-[50px] flex-shrink-0 rounded-lg border border-gray-600 object-cover"
@@ -393,13 +420,13 @@ export default function About() {
 								<p className="timeline-text">Jul 2021 - Apr 2023</p>
 							</div>
 						</div>
-					</li>
-				</ol>
-			</section>
+					</motion.li>
+				</motion.ol>
+			</motion.section>
 
 			<div className="separator"></div>
 
-			<section className="timeline">
+			<motion.section className="timeline" {...revealUp}>
 				<div className="title-wrapper">
 					<div className="icon-box">
 						<ion-icon name="trophy-outline"></ion-icon>
@@ -407,8 +434,8 @@ export default function About() {
 					<h3 className="h3 font-semibold">Achievements</h3>
 				</div>
 
-				<ol className="timeline-list">
-					<li className="timeline-item">
+				<motion.ol className="timeline-list" {...staggerContainer}>
+					<motion.li className="timeline-item" variants={revealUp}>
 						<a
 							href="https://www.linkedin.com/posts/rohith-dachepally_proud-to-share-our-award-winning-project-ugcPost-7266166692341252096-bLFU?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEl9SysBbDFLSO6WL6SVptf-ju5KIu3uIk8"
 							target="_blank"
@@ -432,8 +459,8 @@ export default function About() {
 								</p>
 							</div>
 						</a>
-					</li>
-					<li className="timeline-item">
+					</motion.li>
+					<motion.li className="timeline-item" variants={revealUp}>
 						<a
 							href="https://www.linkedin.com/posts/rohith-dachepally_unity-gamedevelopment-fpv-ugcPost-7433500447635648513-s34Y?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEl9SysBbDFLSO6WL6SVptf-ju5KIu3uIk8"
 							target="_blank"
@@ -459,9 +486,9 @@ export default function About() {
 								</p>
 							</div>
 						</a>
-					</li>
-				</ol>
-			</section>
+					</motion.li>
+				</motion.ol>
+			</motion.section>
 		</article>
 	);
 }

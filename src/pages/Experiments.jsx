@@ -1357,7 +1357,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 			</div>
 
 			{/* Floating Badge below terminal */}
-			<div className="w-full text-center mt-4 pb-6">
+			<div className="w-full text-center mt-4 mb-14 md:mb-8 pb-6">
 				<div className="inline-flex items-center gap-2 px-4 py-2 bg-[#1e1e1f] border border-[#363636] rounded-full text-xs text-yellow-300/80">
 					<span className="w-2 h-2 rounded-full bg-yellow-400 animate-ping"></span>
 					<span className="cristik"><ScrambleText>Interactive Terminal Sandbox Active</ScrambleText></span>

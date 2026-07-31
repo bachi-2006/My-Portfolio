@@ -1,5 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import { ReactTerminal } from "react-terminal";
+
+const revealUp = {
+	initial: { opacity: 0, y: 24 },
+	whileInView: { opacity: 1, y: 0 },
+	viewport: { once: true, amount: 0.16 },
+	transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+};
+
+const staggerContainer = {
+	initial: { opacity: 0, y: 18 },
+	whileInView: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			staggerChildren: 0.08,
+			delayChildren: 0.05,
+		},
+	},
+	viewport: { once: true, amount: 0.15 },
+};
 
 export default function Contact() {
 	const [isCliMode, setIsCliMode] = useState(false);
@@ -20,9 +41,8 @@ export default function Contact() {
 		}
 	};
 
-	const submitForm = (nameVal, emailVal, messageVal) => {
+	const submitForm = () => {
 		setSubmitted(true);
-		// Reset state
 		setFullname("");
 		setEmail("");
 		setMessage("");
@@ -31,17 +51,16 @@ export default function Contact() {
 		}, 6000);
 	};
 
-	// Parse custom flags like --name, --email, --message
 	const parseArgs = (args) => {
 		const params = { name: "", email: "", message: "" };
-		const nameIdx = args.findIndex(x => x === "--name" || x === "-n");
-		const emailIdx = args.findIndex(x => x === "--email" || x === "-e");
-		const msgIdx = args.findIndex(x => x === "--message" || x === "-m");
+		const nameIdx = args.findIndex((x) => x === "--name" || x === "-n");
+		const emailIdx = args.findIndex((x) => x === "--email" || x === "-e");
+		const msgIdx = args.findIndex((x) => x === "--message" || x === "-m");
 
 		const getVal = (idx) => {
 			if (idx === -1 || idx + 1 >= args.length) return "";
 			const words = [];
-			for (let i = idx + 1; i < args.length; i++) {
+			for (let i = idx + 1; i < args.length; i += 1) {
 				if (args[i].startsWith("-")) break;
 				words.push(args[i]);
 			}
@@ -54,25 +73,44 @@ export default function Contact() {
 		return params;
 	};
 
-	// CLI Terminal Commands
 	const commands = {
 		help: () => (
 			<div className="space-y-1.5 font-mono text-xs">
-				<p className="text-yellow-400 font-semibold">Available Commands:</p>
-				<p>  <span className="text-[#38bdf8] font-bold">contact</span>   - Submit a message to Rohith</p>
-				<p className="text-gray-500 pl-4">Usage: contact --name "Your Name" --email "your@email.com" --message "Your message"</p>
-				<p className="text-gray-500 pl-4">Shorthand: contact -n "Your Name" -e "your@email.com" -m "Your message"</p>
-				<p>  <span className="text-[#38bdf8] font-bold">socials</span>   - View social links & profiles</p>
-				<p>  <span className="text-[#38bdf8] font-bold">about</span>     - Display digital resume shortcard</p>
-				<p>  <span className="text-[#38bdf8] font-bold">gui</span>       - Switch back to visual form interface</p>
-				<p>  <span className="text-[#38bdf8] font-bold">clear</span>     - Clear terminal logs</p>
+				<p className="font-semibold text-yellow-400">Available Commands:</p>
+				<p>
+					<span className="font-bold text-[#38bdf8]">contact</span> - Submit a
+					message to Rohith
+				</p>
+				<p className="pl-4 text-gray-500">
+					Usage: contact --name "Your Name" --email "your@email.com" --message
+					"Your message"
+				</p>
+				<p className="pl-4 text-gray-500">
+					Shorthand: contact -n "Your Name" -e "your@email.com" -m "Your message"
+				</p>
+				<p>
+					<span className="font-bold text-[#38bdf8]">socials</span> - View social
+					links and profiles
+				</p>
+				<p>
+					<span className="font-bold text-[#38bdf8]">about</span> - Display a
+					short resume card
+				</p>
+				<p>
+					<span className="font-bold text-[#38bdf8]">gui</span> - Switch back to
+					the visual form interface
+				</p>
+				<p>
+					<span className="font-bold text-[#38bdf8]">clear</span> - Clear terminal
+					logs
+				</p>
 			</div>
 		),
 		contact: (args) => {
 			const { name, email: emailVal, message: messageVal } = parseArgs(args);
 			if (!name || !emailVal || !messageVal) {
 				return (
-					<div className="text-red-400 font-mono text-xs space-y-1">
+					<div className="space-y-1 font-mono text-xs text-red-400">
 						<p>Error: Missing required fields.</p>
 						<p>Syntax: contact --name "Name" --email "Email" --message "Message"</p>
 						<p>Or try: contact -n "Name" -e "Email" -m "Message"</p>
@@ -81,28 +119,78 @@ export default function Contact() {
 			}
 			submitForm(name, emailVal, messageVal);
 			return (
-				<div className="text-green-400 font-mono text-xs space-y-1">
-					<p>✔ Message processing success!</p>
-					<p>  Name: <span className="text-white">{name}</span></p>
-					<p>  Email: <span className="text-white">{emailVal}</span></p>
-					<p>  Message: <span className="text-white">{messageVal}</span></p>
+				<div className="space-y-1 font-mono text-xs text-green-400">
+					<p>[ok] Message processing success!</p>
+					<p>
+						Name: <span className="text-white">{name}</span>
+					</p>
+					<p>
+						Email: <span className="text-white">{emailVal}</span>
+					</p>
+					<p>
+						Message: <span className="text-white">{messageVal}</span>
+					</p>
 					<p className="text-yellow-400">Submitting contact form state...</p>
 				</div>
 			);
 		},
 		socials: () => (
 			<div className="space-y-1 font-mono text-xs">
-				<p>🔗 <span className="font-semibold">LinkedIn:</span> <a href="https://www.linkedin.com/in/rohith-dachepally" target="_blank" rel="noreferrer" className="text-yellow-400 hover:underline">rohith-dachepally</a></p>
-				<p>🔗 <span className="font-semibold">GitHub:</span> <a href="https://github.com/bachi-2006" target="_blank" rel="noreferrer" className="text-yellow-400 hover:underline">bachi-2006</a></p>
-				<p>🔗 <span className="font-semibold">Instagram:</span> <a href="https://www.instagram.com/_mr_decent_06" target="_blank" rel="noreferrer" className="text-yellow-400 hover:underline">_mr_decent_06</a></p>
-				<p>🔗 <span className="font-semibold">Linktree:</span> <a href="https://linktr.ee/rohith_dachepally" target="_blank" rel="noreferrer" className="text-yellow-400 hover:underline">rohith_dachepally</a></p>
+				<p>
+					[link] <span className="font-semibold">LinkedIn:</span>{" "}
+					<a
+						href="https://www.linkedin.com/in/rohith-dachepally"
+						target="_blank"
+						rel="noreferrer"
+						className="text-yellow-400 hover:underline"
+					>
+						rohith-dachepally
+					</a>
+				</p>
+				<p>
+					[link] <span className="font-semibold">GitHub:</span>{" "}
+					<a
+						href="https://github.com/bachi-2006"
+						target="_blank"
+						rel="noreferrer"
+						className="text-yellow-400 hover:underline"
+					>
+						bachi-2006
+					</a>
+				</p>
+				<p>
+					[link] <span className="font-semibold">Instagram:</span>{" "}
+					<a
+						href="https://www.instagram.com/_mr_decent_06"
+						target="_blank"
+						rel="noreferrer"
+						className="text-yellow-400 hover:underline"
+					>
+						_mr_decent_06
+					</a>
+				</p>
+				<p>
+					[link] <span className="font-semibold">Linktree:</span>{" "}
+					<a
+						href="https://linktr.ee/rohith_dachepally"
+						target="_blank"
+						rel="noreferrer"
+						className="text-yellow-400 hover:underline"
+					>
+						rohith_dachepally
+					</a>
+				</p>
 			</div>
 		),
 		about: () => (
 			<div className="space-y-1.5 font-mono text-xs text-gray-300">
-				<p className="text-yellow-400 font-bold text-sm">Rohith Dachepally</p>
-				<p className="text-xs text-gray-500">CS Undergrad @ VBIT | Data Analytics & IoT Enthusiast</p>
-				<p className="mt-1">Built award winning IR designs, computer vision OS automators,</p>
+				<p className="text-sm font-bold text-yellow-400">Rohith Dachepally</p>
+				<p className="text-xs text-gray-500">
+					CS Undergrad @ VBIT | Data Analytics & IoT Enthusiast
+				</p>
+				<p className="mt-1">
+					Built award winning IR designs, computer vision OS automators,
+				</p>
 				<p>and real-time peripheral keyboard visualizers.</p>
 			</div>
 		),
@@ -110,7 +198,7 @@ export default function Contact() {
 			setTimeout(() => setIsCliMode(false), 500);
 			return "Restoring visual form layout...";
 		},
-		clear: () => "Terminal logs cleared."
+		clear: () => "Terminal logs cleared.",
 	};
 
 	useEffect(() => {
@@ -131,14 +219,16 @@ export default function Contact() {
 
 	return (
 		<article className="contact active" data-page="contact">
-			<header className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+			<motion.header
+				className="mb-6 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center"
+				{...revealUp}
+			>
 				<h2 className="h2 article-title mb-0">Contact</h2>
-				
-				{/* Mode Toggle Switch */}
-				<div className="flex bg-[#202022] border border-gray-800 rounded-xl p-1 shadow-inner gap-1">
+
+				<div className="flex gap-1 rounded-xl border border-gray-800 bg-[#202022] p-1 shadow-inner">
 					<button
 						onClick={() => setIsCliMode(false)}
-						className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-1.5 ${
+						className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
 							!isCliMode
 								? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-md"
 								: "text-gray-400 hover:text-white"
@@ -149,7 +239,7 @@ export default function Contact() {
 					</button>
 					<button
 						onClick={() => setIsCliMode(true)}
-						className={`px-3 py-1.5 text-xs font-semibold rounded-lg transition-all duration-200 flex items-center gap-1.5 ${
+						className={`flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-semibold transition-all duration-200 ${
 							isCliMode
 								? "bg-gradient-to-r from-yellow-400 to-orange-500 text-black shadow-md"
 								: "text-gray-400 hover:text-white"
@@ -159,18 +249,22 @@ export default function Contact() {
 						<span>Developer CLI</span>
 					</button>
 				</div>
-			</header>
+			</motion.header>
 
 			{isCliMode ? (
-				/* Terminal Shell Mode */
-				<div className="h-[450px] border border-gray-800 rounded-2xl overflow-hidden shadow-2xl bg-[#1e1e1f] relative">
-					<div className="absolute top-3 left-4 flex gap-1.5 z-10">
-						<span className="w-3 h-3 rounded-full bg-[#ff5f56]"></span>
-						<span className="w-3 h-3 rounded-full bg-[#ffbd2e]"></span>
-						<span className="w-3 h-3 rounded-full bg-[#27c93f]"></span>
-						<span className="text-[10px] text-gray-500 font-mono ml-4 select-none">rohith@workspace:~/contact</span>
+				<motion.div
+					className="relative h-[450px] overflow-hidden rounded-2xl border border-gray-800 bg-[#1e1e1f] shadow-2xl"
+					{...revealUp}
+				>
+					<div className="absolute left-4 top-3 z-10 flex gap-1.5">
+						<span className="h-3 w-3 rounded-full bg-[#ff5f56]"></span>
+						<span className="h-3 w-3 rounded-full bg-[#ffbd2e]"></span>
+						<span className="h-3 w-3 rounded-full bg-[#27c93f]"></span>
+						<span className="ml-4 select-none font-mono text-[10px] text-gray-500">
+							rohith@workspace:~/contact
+						</span>
 					</div>
-					<div className="w-full h-full pt-8 pb-2">
+					<div className="h-full w-full pb-2 pt-8">
 						<ReactTerminal
 							ref={terminalRef}
 							commands={commands}
@@ -188,32 +282,48 @@ export default function Contact() {
 							}}
 						/>
 					</div>
-				</div>
+				</motion.div>
 			) : (
-				/* Standard Form Mode */
 				<>
-					{/* Quick contact alternatives */}
-					<div className="contact-quick-bar">
+					<motion.div className="contact-quick-bar" {...staggerContainer}>
 						<a href="mailto:dachepallyrohith@gmail.com" className="contact-quick-item">
 							<ion-icon name="mail-outline"></ion-icon>
 							<span>dachepallyrohith@gmail.com</span>
 						</a>
-						<a href="https://www.linkedin.com/in/rohith-dachepally" target="_blank" rel="noopener noreferrer" className="contact-quick-item">
+						<a
+							href="https://www.linkedin.com/in/rohith-dachepally"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="contact-quick-item"
+						>
 							<ion-icon name="logo-linkedin"></ion-icon>
 							<span>LinkedIn</span>
 						</a>
-						<a href="https://github.com/bachi-2006" target="_blank" rel="noopener noreferrer" className="contact-quick-item">
+						<a
+							href="https://github.com/bachi-2006"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="contact-quick-item"
+						>
 							<ion-icon name="logo-github"></ion-icon>
 							<span>GitHub</span>
 						</a>
-						<a href="https://linktr.ee/rohith_dachepally" target="_blank" rel="noopener noreferrer" className="contact-quick-item">
+						<a
+							href="https://linktr.ee/rohith_dachepally"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="contact-quick-item"
+						>
 							<ion-icon name="link-outline"></ion-icon>
 							<span>Linktree</span>
 						</a>
-					</div>
+					</motion.div>
 
-					{/* Map */}
-					<section className="mapbox relative group" data-mapbox>
+					<motion.section
+						className="mapbox group relative contact-map-shell"
+						data-mapbox
+						{...revealUp}
+					>
 						{!mapLoaded && (
 							<div className="mapbox-fallback">
 								<div className="mapbox-fallback__badge">
@@ -251,37 +361,40 @@ export default function Contact() {
 								className={mapLoaded ? "opacity-100" : "opacity-0"}
 							></iframe>
 						</figure>
-						<a 
-							href="https://maps.google.com/maps?q=Hyderabad,%20Telangana" 
-							target="_blank" 
+						<a
+							href="https://maps.google.com/maps?q=Hyderabad,%20Telangana"
+							target="_blank"
 							rel="noopener noreferrer"
-							className="absolute top-4 right-4 bg-[#1b1b1cde] hover:bg-yellow-400 hover:text-black border border-gray-800 hover:border-yellow-500 text-yellow-400 font-mono text-[10px] sm:text-xs font-semibold px-3 py-1.5 rounded-xl shadow-lg flex items-center gap-1.5 transition-all duration-200"
+							className="absolute right-4 top-4 flex items-center gap-1.5 rounded-xl border border-gray-800 bg-[#1b1b1cde] px-3 py-1.5 font-mono text-[10px] font-semibold text-yellow-400 shadow-lg transition-all duration-200 hover:border-yellow-500 hover:bg-yellow-400 hover:text-black sm:text-xs"
 						>
 							<span>Open in Maps</span>
 							<ion-icon name="open-outline" style={{ fontSize: "12px" }}></ion-icon>
 						</a>
-					</section>
+					</motion.section>
 
-					{/* Contact Form */}
-					<section className="contact-form">
+					<motion.section className="contact-form contact-form-shell" {...revealUp}>
 						<h3 className="h3 form-title">Contact Form</h3>
 
 						{submitted ? (
-							<div className="bg-[#212123] border border-green-500/30 text-green-400 p-8 rounded-2xl text-center flex flex-col items-center gap-3 transition-all duration-300 shadow-lg">
-								<div className="w-[60px] h-[60px] rounded-full bg-green-500/10 flex items-center justify-center text-3xl text-green-500 animate-bounce">
+							<div className="flex flex-col items-center gap-3 rounded-2xl border border-green-500/30 bg-[#212123] p-8 text-center text-green-400 shadow-lg transition-all duration-300">
+								<div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-green-500/10 text-3xl text-green-500 animate-bounce">
 									<ion-icon name="checkmark-circle-outline"></ion-icon>
 								</div>
-								<h4 className="text-white text-lg font-semibold spacegrotesk">Message Sent Successfully!</h4>
-								<p className="text-gray-400 text-sm font-light">Thank you for reaching out! Rohith will get back to you shortly.</p>
+								<h4 className="spacegrotesk text-lg font-semibold text-white">
+									Message Sent Successfully!
+								</h4>
+								<p className="text-sm font-light text-gray-400">
+									Thank you for reaching out! Rohith will get back to you shortly.
+								</p>
 							</div>
 						) : (
-							<form onSubmit={handleSubmit} className="form">
+							<motion.form onSubmit={handleSubmit} className="form" {...staggerContainer}>
 								<div className="input-wrapper">
 									<div className="relative">
 										<input
 											type="text"
 											name="fullname"
-											className="form-input w-full bg-transparent border-gray-800 focus:border-yellow-400 rounded-xl"
+											className="form-input w-full rounded-xl border-gray-800 bg-transparent focus:border-yellow-400"
 											placeholder="Full name"
 											required
 											value={fullname}
@@ -293,7 +406,7 @@ export default function Contact() {
 										<input
 											type="email"
 											name="email"
-											className="form-input w-full bg-transparent border-gray-800 focus:border-yellow-400 rounded-xl"
+											className="form-input w-full rounded-xl border-gray-800 bg-transparent focus:border-yellow-400"
 											placeholder="Email address"
 											required
 											value={email}
@@ -305,30 +418,29 @@ export default function Contact() {
 								<div className="relative mb-2">
 									<textarea
 										name="message"
-										className="form-input w-full bg-transparent border-gray-800 focus:border-yellow-400 rounded-xl resize-none h-[140px]"
+										className="form-input h-[140px] w-full resize-none rounded-xl border-gray-800 bg-transparent focus:border-yellow-400"
 										placeholder="Your Message"
 										required
 										maxLength={charLimit}
 										value={message}
 										onChange={(e) => setMessage(e.target.value)}
 									/>
-									{/* Live character limit display */}
-									<span className="absolute bottom-3 right-4 text-[10px] text-gray-500 font-mono">
+									<span className="absolute bottom-3 right-4 font-mono text-[10px] text-gray-500">
 										{message.length} / {charLimit}
 									</span>
 								</div>
 
 								<button
-									className="form-btn cursor-pointer transition-transform active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed"
+									className="form-btn cursor-pointer transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
 									type="submit"
 									disabled={!fullname || !email || !message}
 								>
 									<ion-icon name="paper-plane"></ion-icon>
 									<span>Send Message</span>
 								</button>
-							</form>
+							</motion.form>
 						)}
-					</section>
+					</motion.section>
 				</>
 			)}
 		</article>
