@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ReactTerminal } from "react-terminal";
+import { sendContactMessage, site } from "../config/site";
 
 const revealUp = {
 	initial: { opacity: 0, y: 24 },
@@ -28,27 +29,48 @@ export default function Contact() {
 	const [email, setEmail] = useState("");
 	const [message, setMessage] = useState("");
 	const [submitted, setSubmitted] = useState(false);
+	const [sending, setSending] = useState(false);
+	const [sendError, setSendError] = useState("");
 	const [mapLoaded, setMapLoaded] = useState(false);
 	const [mapFailed, setMapFailed] = useState(false);
 	const terminalRef = useRef(null);
 
 	const charLimit = 500;
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (fullname && email && message) {
-			submitForm(fullname, email, message);
+			await submitForm(fullname, email, message);
 		}
 	};
 
-	const submitForm = () => {
-		setSubmitted(true);
-		setFullname("");
-		setEmail("");
-		setMessage("");
-		setTimeout(() => {
-			setSubmitted(false);
-		}, 6000);
+	const submitForm = async (nameValue, emailValue, messageValue) => {
+		setSending(true);
+		setSendError("");
+		try {
+			await sendContactMessage({
+				name: nameValue,
+				email: emailValue,
+				message: messageValue,
+			});
+			setSubmitted(true);
+			setFullname("");
+			setEmail("");
+			setMessage("");
+			setTimeout(() => {
+				setSubmitted(false);
+			}, 6000);
+			return true;
+		} catch (error) {
+			const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Portfolio message from ${nameValue}`)}&body=${encodeURIComponent(`${messageValue}\n\n— ${nameValue} (${emailValue})`)}`;
+			window.location.href = mailto;
+			setSendError(
+				"Could not reach the mail service. Your email app should open as a fallback."
+			);
+			return false;
+		} finally {
+			setSending(false);
+		}
 	};
 
 	const parseArgs = (args) => {
@@ -106,7 +128,7 @@ export default function Contact() {
 				</p>
 			</div>
 		),
-		contact: (args) => {
+		contact: async (args) => {
 			const { name, email: emailVal, message: messageVal } = parseArgs(args);
 			if (!name || !emailVal || !messageVal) {
 				return (
@@ -117,10 +139,10 @@ export default function Contact() {
 					</div>
 				);
 			}
-			submitForm(name, emailVal, messageVal);
+			const ok = await submitForm(name, emailVal, messageVal);
 			return (
-				<div className="space-y-1 font-mono text-xs text-green-400">
-					<p>[ok] Message processing success!</p>
+				<div className={`space-y-1 font-mono text-xs ${ok ? "text-green-400" : "text-yellow-400"}`}>
+					<p>{ok ? "[ok] Message sent." : "[warn] Opened your mail client as fallback."}</p>
 					<p>
 						Name: <span className="text-white">{name}</span>
 					</p>
@@ -130,7 +152,6 @@ export default function Contact() {
 					<p>
 						Message: <span className="text-white">{messageVal}</span>
 					</p>
-					<p className="text-yellow-400">Submitting contact form state...</p>
 				</div>
 			);
 		},
@@ -150,12 +171,12 @@ export default function Contact() {
 				<p>
 					[link] <span className="font-semibold">GitHub:</span>{" "}
 					<a
-						href="https://github.com/bachi-2006"
+						href={site.github}
 						target="_blank"
 						rel="noreferrer"
 						className="text-yellow-400 hover:underline"
 					>
-						bachi-2006
+						{site.githubUser}
 					</a>
 				</p>
 				<p>
@@ -184,14 +205,14 @@ export default function Contact() {
 		),
 		about: () => (
 			<div className="space-y-1.5 font-mono text-xs text-gray-300">
-				<p className="text-sm font-bold text-yellow-400">Rohith Dachepally</p>
+				<p className="text-sm font-bold text-yellow-400">{site.name}</p>
 				<p className="text-xs text-gray-500">
-					CS Undergrad @ VBIT | Data Analytics & IoT Enthusiast
+					{site.role}
 				</p>
 				<p className="mt-1">
-					Built award winning IR designs, computer vision OS automators,
+					Award-winning IR smart-home prototype, FPV Unity demo,
 				</p>
-				<p>and real-time peripheral keyboard visualizers.</p>
+				<p>and computer-vision desktop automations.</p>
 			</div>
 		),
 		gui: () => {
@@ -286,12 +307,12 @@ export default function Contact() {
 			) : (
 				<>
 					<motion.div className="contact-quick-bar" {...staggerContainer}>
-						<a href="mailto:dachepallyrohith@gmail.com" className="contact-quick-item">
+						<a href={`mailto:${site.email}`} className="contact-quick-item">
 							<ion-icon name="mail-outline"></ion-icon>
-							<span>dachepallyrohith@gmail.com</span>
+							<span>{site.email}</span>
 						</a>
 						<a
-							href="https://www.linkedin.com/in/rohith-dachepally"
+							href={site.linkedin}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="contact-quick-item"
@@ -300,7 +321,7 @@ export default function Contact() {
 							<span>LinkedIn</span>
 						</a>
 						<a
-							href="https://github.com/bachi-2006"
+							href={site.github}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="contact-quick-item"
@@ -309,7 +330,7 @@ export default function Contact() {
 							<span>GitHub</span>
 						</a>
 						<a
-							href="https://linktr.ee/rohith_dachepally"
+							href={site.linktree}
 							target="_blank"
 							rel="noopener noreferrer"
 							className="contact-quick-item"
@@ -389,6 +410,9 @@ export default function Contact() {
 							</div>
 						) : (
 							<motion.form onSubmit={handleSubmit} className="form" {...staggerContainer}>
+								{sendError ? (
+									<p className="mb-3 text-xs text-yellow-400">{sendError}</p>
+								) : null}
 								<div className="input-wrapper">
 									<div className="relative">
 										<input
@@ -433,10 +457,10 @@ export default function Contact() {
 								<button
 									className="form-btn cursor-pointer transition-transform active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
 									type="submit"
-									disabled={!fullname || !email || !message}
+									disabled={!fullname || !email || !message || sending}
 								>
 									<ion-icon name="paper-plane"></ion-icon>
-									<span>Send Message</span>
+									<span>{sending ? "Sending..." : "Send Message"}</span>
 								</button>
 							</motion.form>
 						)}

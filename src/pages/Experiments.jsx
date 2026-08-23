@@ -987,7 +987,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 								<div>  <span className="text-yellow-400 font-bold">skills</span>      - Display technical skill levels</div>
 								<div>  <span className="text-yellow-400 font-bold">contact</span>     - Get contact links and social media handles</div>
 								<div>  <span className="text-yellow-400 font-bold">forge</span>       - Open the new Prompt Forge experiment</div>
-								<div>  <span className="text-yellow-400 font-bold">ssh [host]</span>  - Connect to a remote host (try: &apos;ssh ssh.moriliu.com&apos;)</div>
+								<div>  <span className="text-yellow-400 font-bold">ssh [host]</span>  - Connect to a remote host (try: &apos;ssh github.com&apos;)</div>
 								<div>  <span className="text-yellow-400 font-bold">clear</span>       - Clear the terminal screen</div>
 								<div className="text-white font-bold mt-2 mb-1">Sandbox Commands:</div>
 								<div>  <span className="text-yellow-400 font-bold">ls</span>          - List simulated workspace scripts</div>
@@ -1079,8 +1079,8 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 						text: (
 							<div className="text-gray-300 font-mono leading-relaxed space-y-2 select-text">
 								<div className="text-yellow-400 font-bold">ROHITH DACHEPALLY</div>
-								<div>A creative developer and full-stack software engineer building real-time applications, AI systems, and interactive digital interfaces. Focused on crafting premium aesthetics and high-performance products.</div>
-								<div>Currently working on IoT global control ecosystems, generative voice assistants, and immersive travel planners.</div>
+								<div>CS undergrad at VBIT, Hyderabad. Focused on data analytics, IoT, and building small systems that actually ship — from IR automation to FPV game demos.</div>
+								<div>Currently exploring Power BI, Python, and embedded prototypes. Type &apos;projects&apos; or &apos;contact&apos; for more.</div>
 							</div>
 						)
 					}
@@ -1108,7 +1108,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 			case "project": {
 				const idx = parseInt(arg) - 1;
 				if (isNaN(idx) || idx < 0 || idx >= projectdata.length) {
-					setHistory(prev => [...prev, { type: "error", text: "Error: Invalid project index. Usage: 'project [1-14]'" }]);
+					setHistory(prev => [...prev, { type: "error", text: `Error: Invalid project index. Usage: 'project [1-${projectdata.length}]'` }]);
 				} else {
 					const proj = projectdata[idx];
 					setHistory(prev => [
@@ -1146,11 +1146,11 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 						text: (
 							<div className="text-gray-400 font-mono space-y-2 select-text">
 								<div className="text-yellow-400 font-bold">TECHNICAL SKILLSET:</div>
-								<div>Frontend:   <span className="text-yellow-400">[██████████████░░]</span> (React, Vite, Next.js, Tailwind, R3F)</div>
-								<div>Backend:    <span className="text-yellow-400">[████████████░░░░]</span> (Node.js, Express, FastAPI, Flask, WebSockets)</div>
-								<div>App Dev:    <span className="text-yellow-400">[███████████░░░░░]</span> (Flutter, Dart, Capacitor, Android)</div>
-								<div>Databases:  <span className="text-yellow-400">[████████████░░░░]</span> (Firebase RTDB, Firestore, Supabase, SQL)</div>
-								<div>AI/ML/CV:   <span className="text-yellow-400">[██████████░░░░░░]</span> (IBM Granite LLM, Gemini API, MediaPipe, OpenCV)</div>
+								<div>Frontend:   <span className="text-yellow-400">[████████░░░░░░░░]</span> (HTML, CSS, React, Tailwind)</div>
+								<div>Data:       <span className="text-yellow-400">[███████████░░░░░]</span> (Python, SQL, Power BI, Statistics)</div>
+								<div>Languages:  <span className="text-yellow-400">[██████████░░░░░░]</span> (C, Java, Python)</div>
+								<div>IoT:        <span className="text-yellow-400">[█████████░░░░░░░]</span> (Arduino, IR sensors, Embedded C)</div>
+								<div>Other:      <span className="text-yellow-400">[███████░░░░░░░░░]</span> (Unity, Git, Linux)</div>
 							</div>
 						)
 					}
@@ -1165,24 +1165,47 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 							<div className="text-gray-400 font-mono space-y-1 select-text">
 								<div className="text-yellow-400 font-bold">GET IN TOUCH:</div>
 								<div>GitHub:    <a href="https://github.com/bachi-2006" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline hover:text-blue-300 font-mono font-medium">github.com/bachi-2006</a></div>
-								<div>LinkedIn:  <a href="https://www.linkedin.com/in/rohith-dachepally" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline hover:text-blue-300 font-mono font-medium font-mono">linkedin.com/in/rohith-dachepally</a></div>
-								<div>Email:     <span className="text-white select-all">rohith.dachepally@example.com</span></div>
+								<div>LinkedIn:  <a href="https://www.linkedin.com/in/rohith-dachepally" target="_blank" rel="noopener noreferrer" className="text-blue-400 underline hover:text-blue-300 font-mono font-medium">linkedin.com/in/rohith-dachepally</a></div>
+								<div>Email:     <span className="text-white select-all">dachepallyrohith@gmail.com</span></div>
 							</div>
 						)
 					}
 				]);
 				break;
-			case "ssh":
+			case "ssh": {
 				const host = arg.trim();
-				if (host === "ssh.moriliu.com" || host === "morilliu" || host === "mori") {
+				if (host === "github.com" || host === "bachi-2006" || host === "vbit") {
 					setHistory(prev => [
 						...prev,
-						{ type: "log", text: "Connecting to ssh.moriliu.com..." },
+						{ type: "log", text: `Connecting to ${host || "github.com"}...` },
 						{ type: "log", text: "Connection established." },
 						{
 							type: "output",
 							text: (
-								<div className="font-mono text-[10px] sm:text-xs text-gray-300 leading-none space-y-4 select-text">
+								<div className="font-mono text-xs text-gray-300 space-y-2 select-text">
+									<div className="text-yellow-400 font-bold">Rohith Dachepally</div>
+									<div>CS undergrad @ VBIT · Hyderabad</div>
+									<div>Data analytics, IoT prototypes, Unity experiments.</div>
+									<div>
+										<a href="https://github.com/bachi-2006" className="text-blue-400 underline" target="_blank" rel="noopener noreferrer">github.com/bachi-2006</a>
+									</div>
+									<div className="text-gray-500 pt-2">[Connection closed]</div>
+								</div>
+							)
+						}
+					]);
+				} else {
+					setHistory(prev => [...prev, { type: "error", text: "Error: Host name required. Try: 'ssh github.com'" }]);
+				}
+				break;
+			}
+			case "init-experiments": {
+				setHistory([]);
+				setActiveExperiment(null);
+				const bootSequence = [
+					{ type: "system", text: "PLACEHOLDER_REMOVE" },
+				];
+				void bootSequence;
 									<div className="flex flex-col md:flex-row gap-6">
 										<pre className="text-cyan-400 font-mono text-[6px] sm:text-[8px] leading-tight select-none">
 {` ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⣿⣿

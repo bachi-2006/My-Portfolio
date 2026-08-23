@@ -74,50 +74,50 @@ export default function Home() {
 
 				{/* Social Media Links */}
 				<div className="home-social-media lg:flex md:flex grid grid-rows-2 grid-cols-2 flex-wrap gap-4 text-white md:gap-4">
-					<div
-						onClick={() =>
-							window.open("https://www.linkedin.com/in/rohith-dachepally", "_blank")
-						}
+					<a
+						href="https://www.linkedin.com/in/rohith-dachepally"
+						target="_blank"
+						rel="noopener noreferrer"
 						className="homebox flex-1 flex items-center justify-center p-4 md:w-1/4"
 					>
 						<div>
 							<ion-icon name="logo-linkedin"></ion-icon>
 							<span>LinkedIn</span>
 						</div>
-					</div>
-					<div
-						onClick={() =>
-							window.open("https://www.github.com/bachi-2006", "_blank")
-						}
+					</a>
+					<a
+						href="https://github.com/bachi-2006"
+						target="_blank"
+						rel="noopener noreferrer"
 						className="homebox flex-1 flex items-center justify-center p-4 md:w-1/4"
 					>
 						<div>
 							<ion-icon name="logo-github"></ion-icon>
 							<span>GitHub</span>
 						</div>
-					</div>
-					<div
-						onClick={() =>
-							window.open("https://www.instagram.com/_mr_decent_06", "_blank")
-						}
+					</a>
+					<a
+						href="https://www.instagram.com/_mr_decent_06"
+						target="_blank"
+						rel="noopener noreferrer"
 						className="homebox flex-1 flex items-center justify-center p-4 md:w-1/4"
 					>
 						<div>
 							<ion-icon name="logo-instagram"></ion-icon>
 							<span>Instagram</span>
 						</div>
-					</div>
-					<div
-						onClick={() =>
-							window.open("https://linktr.ee/rohith_dachepally", "_blank")
-						}
+					</a>
+					<a
+						href="https://linktr.ee/rohith_dachepally"
+						target="_blank"
+						rel="noopener noreferrer"
 						className="homebox flex-1 flex items-center justify-center p-4 md:w-1/4"
 					>
 						<div>
 							<ion-icon name="link-outline"></ion-icon>
 							<span>Linktree</span>
 						</div>
-					</div>
+					</a>
 				</div>
 
 				<Resume />

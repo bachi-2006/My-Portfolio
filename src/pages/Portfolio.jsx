@@ -27,12 +27,7 @@ export default function Portfolio({ sheetHandler }) {
 
 	const categories = [
 		"All",
-		"Web Development",
-		"App Development",
-		"AI & Machine Learning",
-		"IoT & Embedded Systems",
-		"Data Analytics",
-		"Python Tools",
+		...Array.from(new Set(Projects.flatMap((project) => project.categories))),
 	];
 
 	const filterProjects =

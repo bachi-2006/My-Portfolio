@@ -81,19 +81,19 @@ export default function SideNav() {
 
 				<ul className="social-list">
 					<li className="social-item">
-						<a href="https://www.linkedin.com/in/rohith-dachepally" className="social-link">
+						<a href="https://www.linkedin.com/in/rohith-dachepally" className="social-link" target="_blank" rel="noopener noreferrer">
 							<ion-icon name="logo-linkedin"></ion-icon>
 						</a>
 					</li>
 
 					<li className="social-item">
-						<a href="https://github.com/bachi-2006" className="social-link">
+						<a href="https://github.com/bachi-2006" className="social-link" target="_blank" rel="noopener noreferrer">
 							<ion-icon name="logo-github"></ion-icon>
 						</a>
 					</li>
 
 					<li className="social-item">
-						<a href="https://www.instagram.com/_mr_decent_06" className="social-link">
+						<a href="https://www.instagram.com/_mr_decent_06" className="social-link" target="_blank" rel="noopener noreferrer">
 							<ion-icon name="logo-instagram"></ion-icon>
 						</a>
 					</li>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import OrbitingImages from "../OrbitingImages";
 import TypingEffect from "../TypingEffect";
 
@@ -20,9 +21,9 @@ export default function Skills() {
 				</span>
 
 				<span className="opacity-75 text-sm sm:text-base md:text-[16px] leading-6 text-yellow-200 font-thin">
-					<a href="/about">
+					<Link to="/about">
 					See What all I can do →
-					</a>
+					</Link>
 				</span>
 			</p>
 

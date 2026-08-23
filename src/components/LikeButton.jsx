@@ -10,13 +10,12 @@ const LikeButton = () => {
 
 	const [likesCount, setLikesCount] = useState(() => {
 		if (typeof window !== "undefined") {
-			const saved = localStorage.getItem("portfolio_likes_count");
+			const saved = localStorage.getItem("portfolio_likes_v2");
 			if (saved) return parseInt(saved, 10);
-			const base = 124;
-			localStorage.setItem("portfolio_likes_count", base.toString());
-			return base;
+			localStorage.setItem("portfolio_likes_v2", "0");
+			return 0;
 		}
-		return 124;
+		return 0;
 	});
 
 	const handleClick = () => {
@@ -26,7 +25,7 @@ const LikeButton = () => {
 		
 		const nextCount = nextLiked ? likesCount + 1 : likesCount - 1;
 		setLikesCount(nextCount);
-		localStorage.setItem("portfolio_likes_count", nextCount.toString());
+		localStorage.setItem("portfolio_likes_v2", nextCount.toString());
 	};
 
 	const heartGrid = [

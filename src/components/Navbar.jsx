@@ -5,7 +5,7 @@ const navItems = [
 	{
 		path: "/",
 		label: "Home",
-		icon: "bug-outline",
+		icon: "home-outline",
 	},
 	{
 		path: "/about",
@@ -162,7 +162,7 @@ const Navbar = () => {
 					</a>
 					<a
 						className="transition-colors hover:text-gray-200"
-						href="https://www.linkedin.com/in/rohith-dachepally/"
+						href="https://www.linkedin.com/in/rohith-dachepally"
 						target="_blank"
 						rel="noopener noreferrer"
 						aria-label="LinkedIn"

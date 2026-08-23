@@ -5,27 +5,26 @@ import "./App.css";
 import SideNav from "./components/SideNav";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
-import { Route, Routes, useLocation } from "react-router";
+import { Navigate, Route, Routes, useLocation } from "react-router";
 import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import Home from "./pages/Home";
 import PortfolioSheet from "./components/PortfolioSheet";
 import Experiments from "./pages/Experiments";
+import Footer from "./components/Footer";
 import { LogoLoop } from "./components/LogoLoop";
 
 const loaderLogos = [
-  { src: "/react.svg", alt: "React" },
-  { src: "/typescript.svg", alt: "TypeScript" },
-  { src: "/nextjs_icon_dark.svg", alt: "Next.js" },
-  { src: "/tailwindcss.svg", alt: "Tailwind CSS" },
-  { src: "/vite.svg", alt: "Vite" },
-  { src: "/python.svg", alt: "Python" },
-  { src: "/javascript.svg", alt: "JavaScript" },
-  { src: "/nodejs.svg", alt: "Node.js" },
-  { src: "/mongodb.svg", alt: "MongoDB" },
-  { src: "/firebase.svg", alt: "Firebase" },
-  { src: "/github.svg", alt: "GitHub" },
-  { src: "/vscode.svg", alt: "VS Code" }
+	{ src: "/html5.svg", alt: "HTML5" },
+	{ src: "/css.svg", alt: "CSS" },
+	{ src: "/tailwindcss.svg", alt: "Tailwind CSS" },
+	{ src: "/nextjs_icon_dark.svg", alt: "Next.js" },
+	{ src: "/mongodb.svg", alt: "MongoDB" },
+	{ src: "/docker.svg", alt: "Docker" },
+	{ src: "/aws.svg", alt: "AWS" },
+	{ src: "/github.svg", alt: "GitHub" },
+	{ src: "/figma.svg", alt: "Figma" },
+	{ src: "/redis.svg", alt: "Redis" },
 ];
 
 function AppContent() {
@@ -46,19 +45,13 @@ function AppContent() {
 	const [sheetOpen, setSheetOpen] = useState(false);
 	const [sheetData, setSheetData] = useState({});
 	const [loading, setLoading] = useState(() => {
-		if (typeof window !== "undefined") {
-			const params = new URLSearchParams(window.location.search);
-			return params.get("skipLoader") !== "true" && window.location.pathname === "/";
-		}
-		return true;
+		if (typeof window === "undefined") return false;
+		const params = new URLSearchParams(window.location.search);
+		if (params.get("skipLoader") === "true") return false;
+		if (sessionStorage.getItem("portfolio_loader_seen") === "1") return false;
+		return window.location.pathname === "/";
 	});
-	const [fadeLoader, setFadeLoader] = useState(() => {
-		if (typeof window !== "undefined") {
-			const params = new URLSearchParams(window.location.search);
-			return params.get("skipLoader") === "true" || window.location.pathname !== "/";
-		}
-		return false;
-	});
+	const [fadeLoader, setFadeLoader] = useState(false);
 
 	const sheetHandler = (data = {}) => {
 		setSheetOpen(true);
@@ -73,13 +66,15 @@ function AppContent() {
 
 		document.body.style.overflow = "hidden";
 
+		sessionStorage.setItem("portfolio_loader_seen", "1");
+
 		const fadeTimer = setTimeout(() => {
 			setFadeLoader(true);
-		}, 2300);
+		}, 900);
 		const removeTimer = setTimeout(() => {
 			setLoading(false);
 			document.body.style.overflow = "";
-		}, 3000);
+		}, 1400);
 
 		return () => {
 			clearTimeout(fadeTimer);
@@ -129,9 +124,11 @@ function AppContent() {
 							path="/portfolio"
 							element={<Portfolio sheetHandler={sheetHandler} />}
 						/>
+						<Route path="*" element={<Navigate to="/" replace />} />
 					</Routes>
 				</div>
 			</main>
+			<Footer />
 		</>
 	);
 }
