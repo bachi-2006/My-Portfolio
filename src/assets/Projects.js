@@ -36,15 +36,6 @@ export const Projects = [
 		links: ["https://github.com/bachi-2006/RoadAccidentWitness"],
 	},
 	{
-		title: "ServiceNow CAD Exam Simulator",
-		categories: ["Full-Stack"],
-		img: ["/projects/cad-ui.png"],
-		description:
-			"Practice platform for the ServiceNow Certified Application Developer exam: 246 questions, timed 60-question mock exams weighted by domain, domain practice and flashcards.",
-		tools: ["JavaScript", "HTML", "CSS"],
-		links: ["https://github.com/bachi-2006"],
-	},
-	{
 		title: "RailWay AI Control: Smart India Hackathon",
 		categories: ["AI & Machine Learning", "Full-Stack"],
 		img: ["/projects/sih_train_flow.png"],
