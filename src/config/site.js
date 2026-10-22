@@ -1,6 +1,6 @@
 export const site = {
 	name: "Rohith Dachepally",
-	role: "CS Undergrad @ VBIT | Data Analytics & IoT Enthusiast",
+	role: "AI/ML & Full-Stack Developer | CSE (Data Science) @ VBIT '27",
 	college: "Vignana Bharathi Institute of Technology (VBIT)",
 	collegeShort: "VBIT",
 	location: "Hyderabad, Telangana, India",

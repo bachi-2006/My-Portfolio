@@ -1079,7 +1079,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 						text: (
 							<div className="text-gray-300 font-mono leading-relaxed space-y-2 select-text">
 								<div className="text-yellow-400 font-bold">ROHITH DACHEPALLY</div>
-								<div>CS undergrad at VBIT, Hyderabad. Focused on data analytics, IoT, and building small systems that actually ship — from IR automation to FPV game demos.</div>
+								<div>CSE (Data Science) undergrad at VBIT, Hyderabad. Building AI systems that ship: LLM agents, RAG and memory layers, and the full-stack products around them.</div>
 								<div>Currently exploring Power BI, Python, and embedded prototypes. Type &apos;projects&apos; or &apos;contact&apos; for more.</div>
 							</div>
 						)
@@ -1185,7 +1185,7 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 								<div className="font-mono text-xs text-gray-300 space-y-2 select-text">
 									<div className="text-yellow-400 font-bold">Rohith Dachepally</div>
 									<div>CS undergrad @ VBIT · Hyderabad</div>
-									<div>Data analytics, IoT prototypes, Unity experiments.</div>
+									<div>Agentic AI, LLM memory systems, full-stack products, hackathons.</div>
 									<div>
 										<a href="https://github.com/bachi-2006" className="text-blue-400 underline" target="_blank" rel="noopener noreferrer">github.com/bachi-2006</a>
 									</div>
@@ -1199,58 +1199,6 @@ echo "System online. Type 'help' for commands or 'forge' for the interactive pro
 				}
 				break;
 			}
-			case "init-experiments": {
-				setHistory([]);
-				setActiveExperiment(null);
-				const bootSequence = [
-					{ type: "system", text: "PLACEHOLDER_REMOVE" },
-				];
-				void bootSequence;
-									<div className="flex flex-col md:flex-row gap-6">
-										<pre className="text-cyan-400 font-mono text-[6px] sm:text-[8px] leading-tight select-none">
-{` ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⢀⣼⣿⣿⣿⣿⣿⣿⣿⣟⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣰⣾⣿⣿⣿⣿⣿⣿⡿⠁⠸⠿⠿⢍⠉⠁⠈
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠊⠻⣿⡿⠟⠻⠟⢿⡿⠟⠀⠀⠀⠀⠀⠀⠀⠀
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⡆⠀⠞⠀⠀⠀⠀⠀⣠⣤⣶⣦⣤⣀⠀⠀⠀⠀
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠁⠊⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣩⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠀⠀⠀⠀⣀⠉⠁⠈⣽⣿⣿⣿⣿⣿⡟⠉⣙⠻
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡦⡇⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢹⠁⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢼⠀⠀⠀⠀⠀⢹⣿⣿⣿⡟⠉⠻⣟⢻⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣴⣾⣿⣷⠀⠀⠀⠀⠸⣿⣿⣿⣿⣶⣿⣿⣿⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣰⣾⣿⣿⣿⣿⣆⠀⠀⠀⠀⢻⣿⣿⠁⣤⣤⣤⣬⣙⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠠⣶⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠀⠻⣿⣦⣬⣭⣭⣽⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⡀⠀⠀⠀⠀⠀⠙⢿⣿⣿⣿⣿⣿⣿⣿⠿⠋
- ⠀⠀⠀⠀⠀⠀⠀⠐⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠈⠙⠛⠛⠋⠉⢀⣴⣾
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⣿⣿⣿⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣶⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⡿⠃⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣼⣿⣿⣿⣿⣿
- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠺⠿⣿⣿⠟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿`}
-										</pre>
-										<div className="flex-1 space-y-4 pt-4 leading-normal font-sans text-[11px] sm:text-xs text-gray-300">
-											<div>
-												<h3 className="text-sm font-bold text-white font-mono">_mori</h3>
-												<p className="text-[10px] text-cyan-400 font-mono mt-1">is a creator & storyteller on the internet</p>
-											</div>
-											<div className="space-y-2">
-												<p>Mori Liu is a product manager at Hume AI, building empathic voice AI models. Previously studied CS at Columbia University.</p>
-												<p>Her work sits at the intersection of human nature, technology, and philosophy.</p>
-											</div>
-											<div className="font-mono text-[11px] text-yellow-200">
-												✦ Creations   Reflections   Contacts
-											</div>
-										</div>
-									</div>
-									<div className="text-gray-500 text-xs font-mono pt-2">[Connection to ssh.moriliu.com closed]</div>
-								</div>
-							)
-						}
-					]);
-				} else {
-					setHistory(prev => [...prev, { type: "error", text: "Error: Host name required. Try: 'ssh ssh.moriliu.com'" }]);
-				}
-				break;
 			case "init-experiments": {
 				setHistory([]);
 				setActiveExperiment(null);

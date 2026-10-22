@@ -3,20 +3,52 @@ import { motion } from "framer-motion";
 
 const experience = [
 	{
+		company: "IEI VBIT Student Chapter",
+		companyLogo: "https://www.google.com/s2/favicons?domain=vbithyd.ac.in&sz=128",
+		role: "Technical Co-Lead",
+		duration: "May 2026 - Present",
+		description:
+			"Leading the technical team of the Institution of Engineers (India) student chapter at VBIT, running workshops, hackathon prep and technical events.",
+	},
+	{
+		company: "EduSkills × Google for Developers (AICTE)",
+		companyLogo: "https://www.google.com/s2/favicons?domain=eduskillsfoundation.org&sz=128",
+		role: "Google AI-ML Virtual Intern",
+		duration: "Jun 2026 - Aug 2026",
+		description:
+			"8-week AICTE virtual internship building and training machine learning models with Google AI-ML tooling.",
+	},
+	{
+		company: "VirtualWorks Lab by Emogi",
+		companyLogo: "https://www.google.com/s2/favicons?domain=emogi.in&sz=128",
+		role: "Cyber Security Intern",
+		duration: "Jun 2026 - Jul 2026",
+		description:
+			"Completed hands-on security assignments in network security, vulnerability assessment and secure configuration.",
+	},
+	{
+		company: "InAmigos Foundation",
+		companyLogo: "https://www.google.com/s2/favicons?domain=inamigosfoundation.org&sz=128",
+		role: "Web Development Intern",
+		duration: "May 2026 - Jun 2026",
+		description:
+			"Built and delivered responsive web pages for the foundation's web presence.",
+	},
+	{
 		company: "Google CrowdSource VBIT",
 		companyLogo: "/google-crowdsource.png",
 		role: "Hospitality Coordinator",
-		duration: "Jun 2025 - Present",
+		duration: "Jun 2025 - Jun 2026",
 		description:
 			"Coordinating hospitality operations for Crowdsource by Google India, managing events and ensuring smooth collaboration between teams and participants.",
 	},
 	{
 		company: "1M1B (1 Million for 1 Billion)",
 		companyLogo: "https://www.google.com/s2/favicons?domain=1m1b.org&sz=128",
-		role: "Intern",
+		role: "AI for Sustainability Intern (IBM SkillsBuild)",
 		duration: "Aug 2025 - Nov 2025",
 		description:
-			"Completed an internship at 1M1B, contributing to projects focused on sustainable development and social impact through technology and innovation.",
+			"Applied AI to real-world climate and sustainability problems in an AICTE program co-certified by IBM SkillsBuild.",
 	},
 	{
 		company: "Chitrika VBIT",
@@ -41,9 +73,30 @@ const skillGroups = [
 		category: "Programming Languages",
 		icon: "code-slash-outline",
 		skills: [
-			{ name: "C", level: 70 },
+			{ name: "Python", level: 85 },
+			{ name: "TypeScript / JavaScript", level: 80 },
 			{ name: "Java", level: 80 },
-			{ name: "Python", level: 75 },
+			{ name: "C", level: 70 },
+		],
+	},
+	{
+		category: "AI & LLMs",
+		icon: "sparkles-outline",
+		skills: [
+			{ name: "LLM Agents & RAG", level: 80 },
+			{ name: "Machine Learning", level: 75 },
+			{ name: "NLP / Generative AI", level: 75 },
+			{ name: "Vector DBs (Qdrant, pgvector)", level: 70 },
+		],
+	},
+	{
+		category: "Full-Stack & Cloud",
+		icon: "server-outline",
+		skills: [
+			{ name: "React / Next.js", level: 80 },
+			{ name: "FastAPI / Node.js", level: 80 },
+			{ name: "PostgreSQL / Supabase", level: 75 },
+			{ name: "Docker / AWS", level: 70 },
 		],
 	},
 	{
@@ -60,9 +113,10 @@ const skillGroups = [
 		category: "Tools & Technologies",
 		icon: "hammer-outline",
 		skills: [
-			{ name: "Microsoft PowerPoint", level: 90 },
-			{ name: "Machine Learning", level: 65 },
+			{ name: "Git & GitHub", level: 85 },
+			{ name: "Linux", level: 75 },
 			{ name: "Data Visualization", level: 80 },
+			{ name: "Microsoft PowerPoint", level: 90 },
 		],
 	},
 ];
@@ -97,6 +151,24 @@ const certifications = [
 		issuer: "Google / Android Developer",
 		category: "Development & Other",
 		link: "/certificates/cohort8_android_developer.pdf",
+	},
+	{
+		title: "AWS Developing Generative AI Solutions",
+		issuer: "Amazon Web Services",
+		category: "Data & AI",
+		link: "/certificates/aws_developing_genai_solutions.pdf",
+	},
+	{
+		title: "Google AI Essentials",
+		issuer: "Google / Coursera",
+		category: "Data & AI",
+		link: "/certificates/google_ai_essentials.pdf",
+	},
+	{
+		title: "Agents & Workflows",
+		issuer: "OpenAI Academy",
+		category: "Data & AI",
+		link: "/certificates/openai_agents_workflows.pdf",
 	},
 	{
 		title: "HackerRank SQL (Advanced)",
@@ -201,13 +273,13 @@ export default function About() {
 				<p>
 					Hey, I&apos;m Rohith - a Tech Enthusiast and Computer Science undergrad at
 					Vignana Bharathi Institute of Technology (VBIT), Hyderabad. Passionate
-					about Engineering, Data Analytics, and building innovative solutions
-					with C, Java, and Python.
+					about building AI systems that do real work: LLM agents, RAG
+					pipelines and full-stack products with Python, TypeScript and Next.js.
 				</p>
 				<p>
-					Interested in Data Analytics, Machine Learning, and turning raw data
-					into meaningful insights. I love exploring new technologies and
-					contributing to impactful projects.
+					Recent builds include Incident Radar (agentic incident recovery),
+					MemOS (long-term memory for local LLMs) and EscrowAI on Cardano.
+					5 internships, 30+ public projects and Technical Co-Lead at IEI VBIT.
 				</p>
 				</section>
 				<div className="about-intro-pulse" aria-hidden="true"></div>
@@ -235,15 +307,15 @@ export default function About() {
 					<motion.li className="service-item" variants={revealUp}>
 						<div className="service-icon-box">
 							<ion-icon
-								name="hardware-chip-outline"
+								name="sparkles-outline"
 								style={{ fontSize: "28px", color: "var(--orange-yellow-crayola)" }}
 							></ion-icon>
 						</div>
 						<div className="service-content-box">
-							<h4 className="h4 service-item-title">IoT & Embedded Systems</h4>
+							<h4 className="h4 service-item-title">AI & Full-Stack Engineering</h4>
 							<p className="service-item-text">
-								Designing and building smart automation systems using Arduino, IR
-								sensors, and microcontrollers for real-world IoT applications.
+								Building LLM agents, RAG and memory systems, and the Next.js /
+								FastAPI products around them, deployed with Docker and AWS.
 							</p>
 						</div>
 					</motion.li>
@@ -397,10 +469,10 @@ export default function About() {
 								<h4 className="h4 timeline-item-title font-semibold">
 									Vignana Bharathi Institute of Technology (VBIT)
 								</h4>
-								<span>Bachelor of Technology - BTech, Computer Science</span>
+								<span>B.Tech, Computer Science and Engineering (Data Science) · CGPA 7.22</span>
 								<p className="timeline-text">Aug 2023 - Jul 2027</p>
 								<p className="timeline-text text-xs opacity-60">
-									Skills: C, Python, Java, Data Analytics, SQL
+									Skills: Python, Machine Learning, Data Science, SQL, Java, C
 								</p>
 							</div>
 						</div>
