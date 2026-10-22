@@ -1,6 +1,6 @@
 export const Projects = [
 	{
-		title: "Incident Radar — Agentic Incident Recovery",
+		title: "Incident Radar: Agentic Incident Recovery",
 		categories: ["AI & Machine Learning", "Full-Stack"],
 		img: ["/projects/incident-radar.png"],
 		description:
@@ -9,43 +9,43 @@ export const Projects = [
 		links: ["https://github.com/bachi-2006/Incident-Radar", "https://incident-radar.onrender.com"],
 	},
 	{
-		title: "MemOS — Long-Term Memory for Local LLMs",
+		title: "MemOS: Long-Term Memory for Local LLMs",
 		categories: ["AI & Machine Learning"],
-		img: ["/projects/memos.png"],
+		img: ["/projects/memos-ui.png"],
 		description:
 			"Local-first memory layer for Ollama models: 768-dim semantic search in Qdrant, knowledge-graph extraction into Neo4j, importance decay, adaptive compression and conflict resolution, with a Redis embedding cache and automatic SQLite fallback.",
 		tools: ["Python", "FastAPI", "PostgreSQL", "Qdrant", "Neo4j", "Redis", "Docker"],
 		links: ["https://github.com/bachi-2006/MemOS"],
 	},
 	{
-		title: "EscrowAI — Freelance Escrow on Cardano",
+		title: "EscrowAI: Freelance Escrow on Cardano",
 		categories: ["Web3", "Full-Stack"],
-		img: ["/projects/escrowai.png"],
+		img: ["/projects/escrowai-ui.png"],
 		description:
 			"IndiaCodex 2026 project: a full-stack escrow platform with wallet-based identity and a Plutus V3 validator that enforces payout routing, deadlines and signatures on-chain, with an optional AI oracle for release.",
 		tools: ["Next.js 16", "Express.js", "PostgreSQL", "Prisma", "Aiken"],
 		links: ["https://github.com/bachi-2006"],
 	},
 	{
-		title: "TraceTox — Field Drug-Test Verification",
-		categories: ["AI & Machine Learning"],
-		img: ["/projects/tracetox.png"],
+		title: "RoadSense AI: Accident Witness Assistant",
+		categories: ["AI & Machine Learning", "Full-Stack"],
+		img: ["/projects/roadsense-ui.png"],
 		description:
-			"Phone-camera prototype that calibrates colorimetric drug-test kits against a reference colour card, classifies the result, and locks image hash, GPS and timestamp into a cryptographically signed record.",
-		tools: ["Python", "Computer Vision", "Cryptography"],
-		links: ["https://github.com/bachi-2006/TraceTox"],
+			"PromptWars hackathon build: an AI witness assistant that turns photos from a crash scene into a structured incident report for emergency services, with plate recognition, a responder dashboard and encrypted reports.",
+		tools: ["React", "Vite", "Firebase", "Cloud Functions", "Docker"],
+		links: ["https://github.com/bachi-2006/RoadAccidentWitness"],
 	},
 	{
-		title: "Drug Interaction Detection System",
-		categories: ["AI & Machine Learning"],
-		img: ["/projects/drug.png"],
+		title: "ServiceNow CAD Exam Simulator",
+		categories: ["Full-Stack"],
+		img: ["/projects/cad-ui.png"],
 		description:
-			"NLP system that detects drug interactions, checks dosage and suggests safer alternatives by patient age, combining several medical datasets with IBM Granite.",
-		tools: ["Python", "NLP", "IBM Granite"],
-		links: ["https://github.com/bachi-2006/Drug-Recognition-System"],
+			"Practice platform for the ServiceNow Certified Application Developer exam: 246 questions, timed 60-question mock exams weighted by domain, domain practice and flashcards.",
+		tools: ["JavaScript", "HTML", "CSS"],
+		links: ["https://github.com/bachi-2006"],
 	},
 	{
-		title: "RailWay AI Control — Smart India Hackathon",
+		title: "RailWay AI Control: Smart India Hackathon",
 		categories: ["AI & Machine Learning", "Full-Stack"],
 		img: ["/projects/sih_train_flow.png"],
 		description:
@@ -54,38 +54,56 @@ export const Projects = [
 		links: ["https://github.com/bachi-2006/Train-Flow-Optimization-SIH"],
 	},
 	{
-		title: "Real-Time Quiz Room Platform",
-		categories: ["Full-Stack"],
-		img: ["/projects/quiz.png"],
-		description:
-			"Live quiz rooms for up to 150 concurrent players, with Socket.IO on a custom Next.js server, session-token auth, presence tracking and automatic HTTP-polling fallback.",
-		tools: ["Next.js", "Socket.IO", "PostgreSQL", "Redis"],
-		links: ["https://github.com/bachi-2006"],
-	},
-	{
-		title: "GController — Phone-to-PC Controller",
+		title: "GController: Phone-to-PC Controller",
 		categories: ["Python Tools", "Full-Stack"],
-		img: ["/projects/gcontroller-cover.png", "/projects/gcontroller_gamepad.png"],
+		img: ["/projects/gcontroller_gamepad.png"],
 		description:
 			"Zero-install WiFi controller that maps phone touch, buttons and accelerometer to mouse, keyboard and gamepad events on Windows over WebSockets.",
 		tools: ["Node.js", "WebSockets", "PowerShell"],
 		links: ["https://github.com/bachi-2006/GController"],
 	},
 	{
+		title: "TraceTox: Field Drug-Test Verification",
+		categories: ["AI & Machine Learning"],
+		img: [],
+		description:
+			"Phone-camera prototype that calibrates colorimetric drug-test kits against a reference colour card, classifies the result, and locks image hash, GPS and timestamp into a cryptographically signed record.",
+		tools: ["Python", "Computer Vision", "Cryptography"],
+		links: ["https://github.com/bachi-2006/TraceTox"],
+	},
+	{
+		title: "Drug Interaction Detection System",
+		categories: ["AI & Machine Learning"],
+		img: [],
+		description:
+			"NLP system that detects drug interactions, checks dosage and suggests safer alternatives by patient age, combining several medical datasets with IBM Granite.",
+		tools: ["Python", "NLP", "IBM Granite"],
+		links: ["https://github.com/bachi-2006/Drug-Recognition-System"],
+	},
+	{
+		title: "Real-Time Quiz Room Platform",
+		categories: ["Full-Stack"],
+		img: [],
+		description:
+			"Live quiz rooms for up to 150 concurrent players, with Socket.IO on a custom Next.js server, session-token auth, presence tracking and automatic HTTP-polling fallback.",
+		tools: ["Next.js", "Socket.IO", "PostgreSQL", "Redis"],
+		links: ["https://github.com/bachi-2006"],
+	},
+	{
 		title: "IR Smart Home Prototype",
 		categories: ["IoT & Embedded Systems"],
-		img: ["/projects/irhome.png"],
+		img: [],
 		description:
-			"Award-winning prototype from Sowparnika-2K24 (IETE-ISF, VBIT). An IR-based smart home design on Arduino that reads live sensor input and drives intelligent automation — the project that placed first in the Prototype category.",
+			"Award-winning prototype from Sowparnika-2K24 (IETE-ISF, VBIT). An IR-based smart home design on Arduino that reads live sensor input and drives intelligent automation: the project that placed first in the Prototype category.",
 		tools: ["Arduino", "IR Sensors", "C/C++", "Embedded Systems"],
 		links: [
 			"https://www.linkedin.com/posts/rohith-dachepally_proud-to-share-our-award-winning-project-ugcPost-7266166692341252096-bLFU",
 		],
 	},
 	{
-		title: "Frame 2 Reality — FPV Unity Game",
+		title: "Frame 2 Reality: FPV Unity Game",
 		categories: ["Game Development"],
-		img: ["/projects/frame2reality.png"],
+		img: [],
 		description:
 			"First-place demo from Frame 2 Reality (VBIT). In a tight timeframe the team shipped a playable first-person coin-collection game in Unity: FPV controls, dynamic coin spawn, live scoring, environment tuning, and performance passes.",
 		tools: ["Unity", "C#", "Game Design"],
@@ -96,16 +114,16 @@ export const Projects = [
 	{
 		title: "Gesture OS Automator",
 		categories: ["AI & Machine Learning"],
-		img: ["/projects/gesture.png"],
+		img: [],
 		description:
-			"Webcam-based computer-vision layer that maps MediaPipe hand landmarks to Windows shortcuts — cursor, clicks, volume, window control, and app launch — so the desktop can be driven without a keyboard.",
+			"Webcam-based computer-vision layer that maps MediaPipe hand landmarks to Windows shortcuts: cursor, clicks, volume, window control, and app launch: so the desktop can be driven without a keyboard.",
 		tools: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI"],
 		links: ["https://github.com/bachi-2006/Hand-Gesture-Actions"],
 	},
 	{
 		title: "RGB Keyboard Equalizer",
 		categories: ["Python Tools"],
-		img: ["/projects/rgb.png"],
+		img: [],
 		description:
 			"Real-time WASAPI loopback visualizer that FFT-splits system audio and paints MSI keyboard zones (bass through treble) over a reverse-engineered Mystic Light HID protocol.",
 		tools: ["Python", "NumPy", "WASAPI", "HID"],
