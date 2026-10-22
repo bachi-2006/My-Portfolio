@@ -4,7 +4,8 @@ import OrbitingImages from "../OrbitingImages";
 import TypingEffect from "../TypingEffect";
 
 const textData = [
-	{ text: "Data Analytics" },
+	{ text: "AI & LLM Agents" },
+	{ text: "Full-Stack Development" },
 	{ text: "Machine Learning" },
 	{ text: "IoT & Embedded Systems" },
 ];

@@ -10,7 +10,7 @@ import Contact from "./pages/Contact";
 import Portfolio from "./pages/Portfolio";
 import Home from "./pages/Home";
 import PortfolioSheet from "./components/PortfolioSheet";
-import Experiments from "./pages/Experiments";
+const Experiments = React.lazy(() => import("./pages/Experiments"));
 import Footer from "./components/Footer";
 import { LogoLoop } from "./components/LogoLoop";
 
@@ -119,7 +119,14 @@ function AppContent() {
 						<Route path="/" element={<Home />} />
 						<Route path="/about" element={<About />} />
 						<Route path="/contact" element={<Contact />} />
-						<Route path="/experiments" element={<Experiments />} />
+						<Route
+							path="/experiments"
+							element={
+								<React.Suspense fallback={null}>
+									<Experiments />
+								</React.Suspense>
+							}
+						/>
 						<Route
 							path="/portfolio"
 							element={<Portfolio sheetHandler={sheetHandler} />}

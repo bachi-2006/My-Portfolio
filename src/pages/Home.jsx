@@ -2,7 +2,7 @@ import React from "react";
 import LikeButton from "../components/LikeButton";
 import Resume from "../components/homeComponents/Resume";
 import Skills from "../components/homeComponents/Skills";
-import Quotes from "../components/homeComponents/Quotes";
+import Wins from "../components/homeComponents/Library";
 import Projects from "../components/homeComponents/Projects";
 import Showcase from "../components/homeComponents/Showcase";
 import GitHubStats from "../components/GitHubStats";
@@ -33,7 +33,7 @@ export default function Home() {
 						<span className="text-green-400 spacegrotesk">Innovate</span>
 					</div>
 					<span className="block mt-1 sm:mt-2 text-base sm:text-lg md:text-xl font-medium opacity-45 text-gray-300">
-						CS Undergrad @ VBIT | Data Analytics & IoT Enthusiast
+						AI/ML & Full-Stack Developer · CSE (Data Science) @ VBIT
 					</span>
 				</section>
 
@@ -122,7 +122,7 @@ export default function Home() {
 
 				<Resume />
 				<Skills />
-				<Quotes />
+				<Wins />
 				<Projects />
 				<Showcase />
 			</div>

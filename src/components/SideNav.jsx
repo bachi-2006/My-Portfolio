@@ -22,7 +22,7 @@ export default function SideNav() {
 						Rohith Dachepally
 					</ScrambleText>
 					<div className="flex gap-2 flex-wrap">
-						<p className="title sidebar-title-wrap">Tech Enthusiast | Data Analytics | CS Undergrad @ VBIT</p>
+						<p className="title sidebar-title-wrap">AI/ML & Full-Stack Developer | CSE @ VBIT</p>
 					</div>
 				</div>
 
@@ -99,8 +99,8 @@ export default function SideNav() {
 					</li>
 
 					<li className="social-item">
-						<a href="https://www.facebook.com/dachepally.rohith.9" className="social-link">
-							<ion-icon name="logo-facebook"></ion-icon>
+						<a href="https://devfest.gdghyd.in/rohith-dachepally" className="social-link" target="_blank" rel="noopener noreferrer" title="DevFest Hyderabad profile">
+							<ion-icon name="logo-google"></ion-icon>
 						</a>
 					</li>
 				</ul>

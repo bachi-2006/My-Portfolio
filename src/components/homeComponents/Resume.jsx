@@ -3,7 +3,7 @@ import React from "react";
 export default function Resume() {
 		return (
 				<a
-						href="/resume.png"
+						href="/Rohith_Dachepally_Resume.pdf"
 						target="_blank"
 						rel="noopener noreferrer"
 						className="hresume homebox p-4 sm:p-6 md:p-8 relative overflow-hidden block cursor-pointer group"

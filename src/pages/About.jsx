@@ -296,11 +296,10 @@ export default function About() {
 							></ion-icon>
 						</div>
 						<div className="service-content-box">
-							<h4 className="h4 service-item-title">Data Analytics</h4>
+							<h4 className="h4 service-item-title">Data Analytics & IoT</h4>
 							<p className="service-item-text">
-								Transforming raw data into meaningful insights using PowerBI, SQL,
-								and Python - from statistical analysis to interactive dashboards
-								and data visualization.
+								Dashboards and analysis with Power BI, SQL and Python, plus
+								Arduino and ESP32 prototypes like the award-winning IR smart home.
 							</p>
 						</div>
 					</motion.li>
@@ -462,7 +461,7 @@ export default function About() {
 						<div className="flex cursor-pointer gap-4 transition-transform duration-200 hover:translate-x-2">
 							<img
 								className="h-[50px] w-[50px] flex-shrink-0 rounded-lg border border-gray-600 object-cover"
-								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn6hKR-GCU3gVGS-WSr9MD3aTLuhb7cWBXMQ&s"
+								src="/edu/vbit.png"
 								alt="VBIT"
 							/>
 							<div>
@@ -481,7 +480,7 @@ export default function About() {
 						<div className="flex cursor-pointer gap-4 transition-transform duration-200 hover:translate-x-2">
 							<img
 								className="h-[50px] w-[50px] flex-shrink-0 rounded-lg border border-gray-600 object-cover"
-								src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_VxNQv0DOYJ4NMwMAGwPC_Ht4YrZL5AuWSQ&s"
+								src="/edu/sri-chaitanya.png"
 								alt="Sri Chaitanya"
 							/>
 							<div>

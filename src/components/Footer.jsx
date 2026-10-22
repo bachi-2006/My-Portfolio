@@ -17,7 +17,7 @@ export default function Footer() {
 			<div className="footer-inner">
 				<div className="footer-brand">
 					<span className="footer-name cristik">{site.name}</span>
-					<span className="footer-tagline">CS Undergrad · Data Analytics · IoT</span>
+					<span className="footer-tagline">AI/ML · Full-Stack · VBIT '27</span>
 				</div>
 
 				<nav className="footer-links" aria-label="Footer navigation">
