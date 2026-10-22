@@ -56,7 +56,7 @@ export const Projects = [
 	{
 		title: "GController: Phone-to-PC Controller",
 		categories: ["Python Tools", "Full-Stack"],
-		img: ["/projects/gcontroller_gamepad.png"],
+		img: ["/projects/gcontroller_gamepad.png", "/projects/gcontroller.png"],
 		description:
 			"Zero-install WiFi controller that maps phone touch, buttons and accelerometer to mouse, keyboard and gamepad events on Windows over WebSockets.",
 		tools: ["Node.js", "WebSockets", "PowerShell"],
@@ -65,7 +65,7 @@ export const Projects = [
 	{
 		title: "TraceTox: Field Drug-Test Verification",
 		categories: ["AI & Machine Learning"],
-		img: [],
+		img: ["/projects/tracetox-ui.png"],
 		description:
 			"Phone-camera prototype that calibrates colorimetric drug-test kits against a reference colour card, classifies the result, and locks image hash, GPS and timestamp into a cryptographically signed record.",
 		tools: ["Python", "Computer Vision", "Cryptography"],
@@ -74,11 +74,33 @@ export const Projects = [
 	{
 		title: "Drug Interaction Detection System",
 		categories: ["AI & Machine Learning"],
-		img: [],
+		img: ["/projects/drug-ui.png"],
 		description:
 			"NLP system that detects drug interactions, checks dosage and suggests safer alternatives by patient age, combining several medical datasets with IBM Granite.",
 		tools: ["Python", "NLP", "IBM Granite"],
 		links: ["https://github.com/bachi-2006/Drug-Recognition-System"],
+	},
+	{
+		title: "IR Smart Home Prototype",
+		categories: ["IoT & Embedded Systems"],
+		img: ["/projects/irhome-award.jpg", "/projects/irhome-board.jpg"],
+		description:
+			"Award-winning prototype from Sowparnika-2K24 (IETE-ISF, VBIT). An IR-based smart home design on Arduino that reads live sensor input and drives intelligent automation. It placed first in the Prototype category.",
+		tools: ["Arduino", "IR Sensors", "C/C++", "Embedded Systems"],
+		links: [
+			"https://www.linkedin.com/posts/rohith-dachepally_proud-to-share-our-award-winning-project-ugcPost-7266166692341252096-bLFU",
+		],
+	},
+	{
+		title: "Frame 2 Reality: FPV Unity Game",
+		categories: ["Game Development"],
+		img: ["/projects/frame2reality-stage.jpg", "/projects/frame2reality-coding.jpg"],
+		description:
+			"First-place demo from Frame 2 Reality (VBIT). In a tight timeframe the team shipped a playable first-person coin-collection game in Unity: FPV controls, dynamic coin spawn, live scoring, environment tuning, and performance passes.",
+		tools: ["Unity", "C#", "Game Design"],
+		links: [
+			"https://www.linkedin.com/posts/rohith-dachepally_unity-gamedevelopment-fpv-ugcPost-7433500447635648513-s34Y",
+		],
 	},
 	{
 		title: "Real-Time Quiz Room Platform",
@@ -90,33 +112,11 @@ export const Projects = [
 		links: ["https://github.com/bachi-2006"],
 	},
 	{
-		title: "IR Smart Home Prototype",
-		categories: ["IoT & Embedded Systems"],
-		img: [],
-		description:
-			"Award-winning prototype from Sowparnika-2K24 (IETE-ISF, VBIT). An IR-based smart home design on Arduino that reads live sensor input and drives intelligent automation: the project that placed first in the Prototype category.",
-		tools: ["Arduino", "IR Sensors", "C/C++", "Embedded Systems"],
-		links: [
-			"https://www.linkedin.com/posts/rohith-dachepally_proud-to-share-our-award-winning-project-ugcPost-7266166692341252096-bLFU",
-		],
-	},
-	{
-		title: "Frame 2 Reality: FPV Unity Game",
-		categories: ["Game Development"],
-		img: [],
-		description:
-			"First-place demo from Frame 2 Reality (VBIT). In a tight timeframe the team shipped a playable first-person coin-collection game in Unity: FPV controls, dynamic coin spawn, live scoring, environment tuning, and performance passes.",
-		tools: ["Unity", "C#", "Game Design"],
-		links: [
-			"https://www.linkedin.com/posts/rohith-dachepally_unity-gamedevelopment-fpv-ugcPost-7433500447635648513-s34Y",
-		],
-	},
-	{
 		title: "Gesture OS Automator",
 		categories: ["AI & Machine Learning"],
 		img: [],
 		description:
-			"Webcam-based computer-vision layer that maps MediaPipe hand landmarks to Windows shortcuts: cursor, clicks, volume, window control, and app launch: so the desktop can be driven without a keyboard.",
+			"Webcam-based computer-vision layer that maps MediaPipe hand landmarks to Windows shortcuts: cursor, clicks, volume, window control, and app launch, so the desktop can be driven without a keyboard.",
 		tools: ["Python", "MediaPipe", "OpenCV", "PyAutoGUI"],
 		links: ["https://github.com/bachi-2006/Hand-Gesture-Actions"],
 	},
